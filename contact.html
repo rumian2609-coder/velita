@@ -5,14 +5,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<meta
+    name="description"
+    content="Contact Velita for general enquiries, feedback and collaboration opportunities."
+>
+
 <title>Contact | Velita</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Parisienne&display=swap" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Parisienne&display=swap"
+    rel="stylesheet"
+>
 
 <style>
+
+/* ---------------------------------
+   BASE
+--------------------------------- */
+
+:root{
+    --brown:#4B3528;
+    --brown-dark:#2E2019;
+    --cream:#E9DFD3;
+    --cream-soft:#D9CABC;
+    --border:rgba(233,223,211,.22);
+    --shadow:0 30px 80px rgba(20,10,5,.35);
+}
 
 *{
     margin:0;
@@ -20,33 +41,177 @@
     box-sizing:border-box;
 }
 
-body{
-    background:#E9DFD3;
-    color:#4B3528;
-    font-family:'Manrope',sans-serif;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    min-height:100vh;
-    text-align:center;
-    padding:30px;
+html{
+    scroll-behavior:smooth;
+    background:#4B3528;
+    overscroll-behavior-y:none;
 }
 
-/* MENU BUTTON */
+body{
+    min-height:100vh;
+    min-height:100dvh;
+
+    overflow-x:hidden;
+    overscroll-behavior-y:none;
+
+    background-color:#4B3528;
+
+    background:
+        radial-gradient(
+            circle at 16% 12%,
+            rgba(201,166,137,.17),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 86% 29%,
+            rgba(233,223,211,.10),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 45% 72%,
+            rgba(116,80,60,.28),
+            transparent 36%
+        ),
+        linear-gradient(
+            145deg,
+            #51392C 0%,
+            var(--brown) 42%,
+            #3B291F 100%
+        );
+
+    color:var(--cream);
+    font-family:'Manrope',sans-serif;
+    font-weight:300;
+}
+
+body::before{
+    content:"";
+
+    position:fixed;
+    inset:0;
+
+    z-index:-3;
+    pointer-events:none;
+
+    opacity:.18;
+
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(255,255,255,.018) 2px,
+            rgba(255,255,255,.018) 3px
+        );
+}
+
+body::after{
+    content:"V";
+
+    position:fixed;
+    left:-3vw;
+    top:44%;
+
+    z-index:-2;
+    pointer-events:none;
+
+    transform:translateY(-50%);
+
+    font-family:'Parisienne',cursive;
+    font-size:min(78vw, 900px);
+    line-height:1;
+
+    color:rgba(233,223,211,.025);
+}
+
+/* ---------------------------------
+   BACKGROUND SHAPES
+--------------------------------- */
+
+.background-shapes{
+    position:fixed;
+    inset:0;
+
+    z-index:-1;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.blur-shape{
+    position:absolute;
+
+    border-radius:50%;
+    filter:blur(20px);
+    opacity:.45;
+
+    animation:floatShape 12s ease-in-out infinite alternate;
+}
+
+.blur-shape.one{
+    width:250px;
+    height:250px;
+
+    top:8%;
+    right:-80px;
+
+    background:rgba(233,223,211,.12);
+}
+
+.blur-shape.two{
+    width:180px;
+    height:180px;
+
+    top:52%;
+    left:-70px;
+
+    background:rgba(192,149,118,.16);
+    animation-delay:-4s;
+}
+
+.blur-shape.three{
+    width:320px;
+    height:320px;
+
+    bottom:-160px;
+    right:18%;
+
+    background:rgba(233,223,211,.07);
+    animation-delay:-8s;
+}
+
+@keyframes floatShape{
+
+    from{
+        transform:translate3d(0,0,0) scale(1);
+    }
+
+    to{
+        transform:translate3d(25px,-35px,0) scale(1.08);
+    }
+}
+
+/* ---------------------------------
+   MENU
+--------------------------------- */
 
 .menu-button{
     position:fixed;
-    top:30px;
+    top:28px;
     right:30px;
-    z-index:1001;
 
-    width:45px;
-    height:45px;
+    z-index:1002;
 
-    border:none;
-    background:transparent;
+    width:52px;
+    height:52px;
+
+    border:1px solid rgba(233,223,211,.22);
+    border-radius:50%;
+
+    background:rgba(46,32,25,.22);
+
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+
     cursor:pointer;
 
     display:flex;
@@ -54,27 +219,59 @@ body{
     justify-content:center;
     align-items:center;
     gap:6px;
+
+    transition:
+        background .25s,
+        border-color .25s,
+        transform .25s;
+}
+
+.menu-button:hover{
+    transform:scale(1.05);
+
+    background:rgba(233,223,211,.10);
+    border-color:rgba(233,223,211,.5);
 }
 
 .menu-button span{
-    width:28px;
-    height:2px;
-    background:#4B3528;
+    display:block;
+
+    width:24px;
+    height:1.5px;
+
+    background:var(--cream);
+
+    transition:
+        transform .3s,
+        opacity .3s;
 }
 
-/* OVERLAY */
+.menu-button.active span:nth-child(1){
+    transform:translateY(7.5px) rotate(45deg);
+}
+
+.menu-button.active span:nth-child(2){
+    opacity:0;
+}
+
+.menu-button.active span:nth-child(3){
+    transform:translateY(-7.5px) rotate(-45deg);
+}
 
 .menu-overlay{
     position:fixed;
     inset:0;
 
-    background:rgba(0,0,0,.25);
+    z-index:999;
+
+    background:rgba(18,10,6,.56);
 
     opacity:0;
     visibility:hidden;
 
-    transition:.3s;
-    z-index:999;
+    transition:
+        opacity .3s,
+        visibility .3s;
 }
 
 .menu-overlay.active{
@@ -82,156 +279,993 @@ body{
     visibility:visible;
 }
 
-/* MENU */
-
 .menu{
     position:fixed;
     top:0;
-    right:-350px;
+    right:-380px;
 
-    width:320px;
-    max-width:85%;
-    height:100vh;
-
-    background:#4B3528;
-    color:#E9DFD3;
-
-    padding:110px 45px;
-
-    transition:.35s;
     z-index:1000;
 
-    text-align:left;
+    width:350px;
+    max-width:88%;
+    height:100vh;
+
+    padding:115px 48px 50px;
+
+    background:rgba(233,223,211,.97);
+    color:var(--brown);
+
+    box-shadow:-30px 0 80px rgba(20,10,5,.3);
+
+    transition:right .38s cubic-bezier(.2,.8,.2,1);
 }
 
 .menu.active{
     right:0;
 }
 
-.menu a{
-    display:block;
+.menu-label{
+    margin-bottom:34px;
 
-    color:#E9DFD3;
-    text-decoration:none;
+    font-size:12px;
+    letter-spacing:4px;
+    text-transform:uppercase;
 
-    font-size:24px;
-    font-weight:300;
-
-    margin-bottom:30px;
-    transition:.2s;
+    opacity:.55;
 }
 
-.menu a:hover{
-    opacity:.6;
+.menu a{
+    position:relative;
+
+    display:block;
+    width:max-content;
+
+    margin-bottom:27px;
+
+    color:var(--brown);
+    text-decoration:none;
+
+    font-size:27px;
+    font-weight:300;
+}
+
+.menu a::after{
+    content:"";
+
+    position:absolute;
+    left:0;
+    bottom:-6px;
+
+    width:0;
+    height:1px;
+
+    background:var(--brown);
+
+    transition:width .25s;
+}
+
+.menu a:hover::after,
+.menu a.current::after{
+    width:100%;
 }
 
 .menu a.current{
     font-weight:600;
 }
 
-/* PAGE CONTENT */
+/* ---------------------------------
+   LAYOUT
+--------------------------------- */
 
-.container{
-    max-width:700px;
-    padding:30px;
+.page{
+    position:relative;
+    width:100%;
 }
 
-h1{
+.content{
+    width:min(1380px, calc(100% - 80px));
+    margin:0 auto;
+}
+
+/* ---------------------------------
+   BUTTONS
+--------------------------------- */
+
+.primary-button,
+.secondary-button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+
+    min-height:54px;
+    padding:0 26px;
+
+    text-decoration:none;
+
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:2px;
+    text-transform:uppercase;
+
+    transition:
+        transform .25s,
+        background .25s,
+        color .25s,
+        border-color .25s;
+}
+
+.primary-button{
+    border:1px solid var(--cream);
+
+    background:var(--cream);
+    color:var(--brown);
+}
+
+.primary-button:hover{
+    transform:translateY(-3px);
+    background:#F5ECE1;
+}
+
+.secondary-button{
+    border:1px solid rgba(233,223,211,.3);
+
+    background:rgba(255,255,255,.025);
+    color:var(--cream);
+}
+
+.secondary-button:hover{
+    transform:translateY(-3px);
+
+    border-color:rgba(233,223,211,.7);
+    background:rgba(255,255,255,.07);
+}
+
+/* ---------------------------------
+   HERO
+--------------------------------- */
+
+.hero{
+    min-height:92vh;
+
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) minmax(390px, .9fr);
+    align-items:center;
+    gap:80px;
+
+    padding:135px 0 100px;
+}
+
+.hero-copy{
+    text-align:left;
+}
+
+.eyebrow{
+    display:flex;
+    align-items:center;
+    gap:16px;
+
+    margin-bottom:25px;
+
+    font-size:13px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+
+    color:var(--cream-soft);
+}
+
+.eyebrow::before{
+    content:"";
+
+    width:42px;
+    height:1px;
+
+    background:var(--cream-soft);
+    opacity:.7;
+}
+
+.logo{
+    margin-left:-5px;
+    margin-bottom:30px;
+
     font-family:'Parisienne',cursive;
-    font-size:110px;
+    font-size:clamp(94px, 12vw, 155px);
     font-weight:400;
-    margin-bottom:15px;
+    line-height:.9;
 }
 
-.subtitle{
-    letter-spacing:6px;
-    font-size:18px;
+.hero-title{
+    max-width:700px;
+
+    margin-bottom:28px;
+
+    font-size:clamp(42px, 5.2vw, 70px);
+    font-weight:300;
+    line-height:1.08;
+    letter-spacing:-2.5px;
+}
+
+.hero-title strong{
+    font-weight:600;
+}
+
+.hero-description{
+    max-width:650px;
+
+    font-size:19px;
+    line-height:1.8;
+
+    color:rgba(233,223,211,.74);
+}
+
+.hero-note{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    margin-top:30px;
+
+    font-size:13px;
+    letter-spacing:1px;
+
+    color:rgba(233,223,211,.52);
+}
+
+.hero-note-dot{
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+    background:#D6B493;
+
+    box-shadow:0 0 0 7px rgba(214,180,147,.07);
+}
+
+/* ---------------------------------
+   CONTACT PANEL
+--------------------------------- */
+
+.contact-panel{
+    position:relative;
+
+    overflow:hidden;
+
+    padding:45px;
+
+    border:1px solid var(--border);
+    border-radius:40px;
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(233,223,211,.14),
+            transparent 40%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.09),
+            rgba(255,255,255,.025)
+        );
+
+    box-shadow:var(--shadow);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+}
+
+.contact-panel::before{
+    content:"@";
+
+    position:absolute;
+    right:-20px;
+    bottom:-90px;
+
+    font-size:300px;
+    font-weight:300;
+    line-height:1;
+
+    color:rgba(233,223,211,.035);
+}
+
+.panel-label{
+    position:relative;
+    z-index:1;
+
+    margin-bottom:34px;
+
+    font-size:11px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.47);
+}
+
+.contact-method{
+    position:relative;
+    z-index:1;
+
+    display:block;
+
+    margin-bottom:16px;
+    padding:25px;
+
+    border:1px solid rgba(233,223,211,.14);
+    border-radius:22px;
+
+    background:rgba(31,20,15,.2);
+    color:var(--cream);
+
+    text-decoration:none;
+
+    transition:
+        transform .3s,
+        background .3s,
+        border-color .3s;
+}
+
+.contact-method:hover{
+    transform:translateY(-5px);
+
+    background:rgba(255,255,255,.075);
+    border-color:rgba(233,223,211,.4);
+}
+
+.method-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+
+    margin-bottom:10px;
+}
+
+.method-label{
+    font-size:10px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.45);
+}
+
+.method-arrow{
+    width:35px;
+    height:35px;
+
+    border:1px solid rgba(233,223,211,.2);
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:
+        background .25s,
+        color .25s;
+}
+
+.contact-method:hover .method-arrow{
+    background:var(--cream);
+    color:var(--brown);
+}
+
+.method-value{
+    overflow-wrap:anywhere;
+
+    font-size:19px;
+    font-weight:500;
+}
+
+.panel-footer{
+    position:relative;
+    z-index:1;
+
+    margin-top:30px;
+
+    font-size:13px;
+    line-height:1.7;
+
+    color:rgba(233,223,211,.5);
+}
+
+/* ---------------------------------
+   SECTIONS
+--------------------------------- */
+
+.section{
+    position:relative;
+    padding:115px 0;
+}
+
+.section-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:35px;
+
     margin-bottom:50px;
 }
 
-.line{
-    width:70px;
-    height:1px;
-    background:#4B3528;
-    margin:0 auto 50px;
-    opacity:.8;
+.section-number{
+    margin-bottom:13px;
+
+    font-size:12px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.48);
 }
 
-h2{
-    font-size:44px;
+.section-title{
+    font-size:clamp(35px, 5vw, 58px);
     font-weight:300;
-    letter-spacing:8px;
-    margin-bottom:30px;
+    line-height:1.12;
+    letter-spacing:-2px;
 }
 
-p{
-    font-size:20px;
+.section-description{
+    max-width:430px;
+
+    font-size:16px;
+    line-height:1.75;
+
+    color:rgba(233,223,211,.65);
+}
+
+/* ---------------------------------
+   ENQUIRY TYPES
+--------------------------------- */
+
+.enquiry-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+
+    overflow:hidden;
+
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+}
+
+.enquiry-card{
+    min-height:290px;
+    padding:38px 29px;
+
+    transition:background .3s;
+}
+
+.enquiry-card:not(:last-child){
+    border-right:1px solid var(--border);
+}
+
+.enquiry-card:hover{
+    background:rgba(255,255,255,.045);
+}
+
+.enquiry-number{
+    margin-bottom:65px;
+
+    font-size:11px;
+    letter-spacing:3px;
+
+    color:rgba(233,223,211,.42);
+}
+
+.enquiry-title{
+    margin-bottom:15px;
+
+    font-size:21px;
+    font-weight:500;
+}
+
+.enquiry-text{
+    font-size:14px;
+    line-height:1.75;
+
+    color:rgba(233,223,211,.58);
+}
+
+/* ---------------------------------
+   PROJECT NOTE
+--------------------------------- */
+
+.project-note{
+    position:relative;
+
+    overflow:hidden;
+
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:45px;
+
+    padding:65px;
+
+    border:1px solid var(--border);
+    border-radius:38px;
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(233,223,211,.12),
+            transparent 38%
+        ),
+        rgba(255,255,255,.04);
+}
+
+.project-note::before{
+    content:"N";
+
+    position:absolute;
+    right:-20px;
+    bottom:-110px;
+
+    font-family:'Parisienne',cursive;
+    font-size:340px;
+    line-height:1;
+
+    color:rgba(233,223,211,.035);
+}
+
+.note-copy,
+.note-meta{
+    position:relative;
+    z-index:1;
+}
+
+.note-label{
+    margin-bottom:20px;
+
+    font-size:11px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.48);
+}
+
+.note-title{
+    margin-bottom:22px;
+
+    font-size:clamp(32px, 4vw, 49px);
+    font-weight:300;
+    line-height:1.2;
+    letter-spacing:-1.5px;
+}
+
+.note-text{
+    max-width:650px;
+
+    font-size:17px;
     line-height:1.8;
-    opacity:.9;
+
+    color:rgba(233,223,211,.65);
 }
 
-.contact{
-    margin-top:40px;
-    font-size:18px;
+.note-meta{
+    display:grid;
+    align-content:center;
+    gap:14px;
 }
 
-.contact a{
-    color:#4B3528;
-    text-decoration:none;
+.note-meta-card{
+    min-height:86px;
+    padding:20px 22px;
+
+    border:1px solid rgba(233,223,211,.14);
+    border-radius:21px;
+
+    background:rgba(31,20,15,.2);
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
 }
 
-.contact a:hover{
-    opacity:.6;
+.note-meta-label{
+    font-size:10px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.43);
 }
+
+.note-meta-value{
+    font-size:15px;
+    font-weight:600;
+    text-align:right;
+}
+
+/* ---------------------------------
+   CTA
+--------------------------------- */
+
+.cta-card{
+    position:relative;
+
+    overflow:hidden;
+
+    padding:90px 50px;
+
+    border:1px solid var(--border);
+    border-radius:42px;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(233,223,211,.14),
+            transparent 47%
+        ),
+        rgba(255,255,255,.045);
+
+    text-align:center;
+}
+
+.cta-card::before{
+    content:"Velita";
+
+    position:absolute;
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-48%);
+
+    font-family:'Parisienne',cursive;
+    font-size:230px;
+    line-height:1;
+
+    color:rgba(233,223,211,.025);
+    white-space:nowrap;
+}
+
+.cta-content{
+    position:relative;
+    z-index:1;
+}
+
+.cta-title{
+    max-width:790px;
+
+    margin:0 auto 22px;
+
+    font-size:clamp(38px, 5vw, 61px);
+    font-weight:300;
+    line-height:1.15;
+    letter-spacing:-2px;
+}
+
+.cta-text{
+    max-width:620px;
+
+    margin:0 auto;
+
+    font-size:17px;
+    line-height:1.8;
+
+    color:rgba(233,223,211,.65);
+}
+
+.cta-actions{
+    display:flex;
+    justify-content:center;
+    gap:16px;
+    flex-wrap:wrap;
+
+    margin-top:38px;
+}
+
+/* ---------------------------------
+   FOOTER
+--------------------------------- */
 
 .footer{
-    margin-top:50px;
-    font-size:15px;
-    opacity:.6;
+    padding:55px 0 45px;
+
+    border-top:1px solid rgba(233,223,211,.13);
 }
 
-@media(max-width:600px){
+.footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:35px;
+}
 
-    body{
-        padding:20px;
+.footer-brand{
+    text-align:left;
+}
+
+.footer-logo{
+    font-family:'Parisienne',cursive;
+    font-size:46px;
+    line-height:1;
+}
+
+.footer-tagline{
+    margin-top:7px;
+
+    font-size:11px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.42);
+}
+
+.footer-links{
+    display:flex;
+    align-items:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.footer-links a{
+    color:rgba(233,223,211,.65);
+    text-decoration:none;
+
+    font-size:13px;
+
+    transition:color .2s;
+}
+
+.footer-links a:hover{
+    color:var(--cream);
+}
+
+.copyright{
+    margin-top:35px;
+
+    text-align:center;
+
+    font-size:12px;
+
+    color:rgba(233,223,211,.38);
+}
+
+/* ---------------------------------
+   REVEAL
+--------------------------------- */
+
+.reveal{
+    opacity:0;
+    transform:translateY(30px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* ---------------------------------
+   TABLET
+--------------------------------- */
+
+@media(max-width:960px){
+
+    .content{
+        width:min(100% - 40px, 760px);
     }
 
-    .container{
-        padding:20px;
+    .hero{
+        grid-template-columns:1fr;
+        gap:45px;
+
+        padding-top:130px;
     }
 
-    h1{
-        font-size:80px;
+    .hero-copy{
+        text-align:center;
     }
 
-    .subtitle{
-        font-size:14px;
-        letter-spacing:4px;
-        margin-bottom:40px;
+    .eyebrow{
+        justify-content:center;
     }
 
-    h2{
-        font-size:30px;
-        letter-spacing:5px;
+    .hero-title,
+    .hero-description{
+        margin-left:auto;
+        margin-right:auto;
     }
 
-    p{
-        font-size:17px;
+    .hero-note{
+        justify-content:center;
+    }
+
+    .section-heading{
+        display:block;
+        text-align:center;
+    }
+
+    .section-description{
+        margin:22px auto 0;
+    }
+
+    .enquiry-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .enquiry-card:nth-child(2){
+        border-right:none;
+    }
+
+    .enquiry-card:nth-child(1),
+    .enquiry-card:nth-child(2){
+        border-bottom:1px solid var(--border);
+    }
+
+    .project-note{
+        grid-template-columns:1fr;
+    }
+}
+
+/* ---------------------------------
+   MOBILE
+--------------------------------- */
+
+@media(max-width:620px){
+
+    .content{
+        width:calc(100% - 30px);
     }
 
     .menu-button{
-        top:20px;
-        right:20px;
+        top:18px;
+        right:18px;
+
+        width:48px;
+        height:48px;
+    }
+
+    .menu{
+        padding:105px 38px 40px;
+    }
+
+    .hero{
+        min-height:auto;
+
+        padding:110px 0 70px;
+    }
+
+    .logo{
+        font-size:88px;
+    }
+
+    .hero-title{
+        font-size:41px;
+        letter-spacing:-1.5px;
+    }
+
+    .hero-description{
+        font-size:16px;
+    }
+
+    .contact-panel{
+        padding:28px;
+
+        border-radius:30px;
+    }
+
+    .method-top{
+        align-items:flex-start;
+    }
+
+    .method-value{
+        font-size:16px;
+    }
+
+    .section{
+        padding:80px 0;
+    }
+
+    .section-title{
+        font-size:39px;
+        letter-spacing:-1.5px;
+    }
+
+    .enquiry-grid{
+        grid-template-columns:1fr;
+    }
+
+    .enquiry-card{
+        min-height:auto;
+        padding:35px 27px;
+    }
+
+    .enquiry-card:not(:last-child){
+        border-right:none;
+        border-bottom:1px solid var(--border);
+    }
+
+    .enquiry-number{
+        margin-bottom:35px;
+    }
+
+    .project-note{
+        padding:42px 24px;
+
+        border-radius:30px;
+    }
+
+    .note-meta-card{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .note-meta-value{
+        text-align:left;
+    }
+
+    .cta-card{
+        padding:70px 24px;
+
+        border-radius:30px;
+    }
+
+    .cta-title{
+        font-size:39px;
+    }
+
+    .cta-actions{
+        flex-direction:column;
+    }
+
+    .primary-button,
+    .secondary-button{
+        width:100%;
+    }
+
+    .footer-inner{
+        align-items:center;
+        flex-direction:column;
+
+        text-align:center;
+    }
+
+    .footer-brand{
+        text-align:center;
+    }
+
+    .footer-links{
+        justify-content:center;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+
+    html{
+        scroll-behavior:auto;
+    }
+
+    *,
+    *::before,
+    *::after{
+        animation:none !important;
+        transition:none !important;
+    }
+
+    .reveal{
+        opacity:1;
+        transform:none;
     }
 }
 
 </style>
-
 </head>
 
 <body>
 
-<button class="menu-button" id="menuButton" aria-label="Open menu">
+<div class="background-shapes" aria-hidden="true">
+    <div class="blur-shape one"></div>
+    <div class="blur-shape two"></div>
+    <div class="blur-shape three"></div>
+</div>
+
+<button
+    class="menu-button"
+    id="menuButton"
+    aria-label="Open menu"
+    aria-expanded="false"
+>
     <span></span>
     <span></span>
     <span></span>
@@ -239,33 +1273,419 @@ p{
 
 <div class="menu-overlay" id="menuOverlay"></div>
 
-<nav class="menu" id="menu">
-    <a href="index.html">Home</a>
-    <a href="about.html">About Us</a>
-    <a href="contact.html" class="current">Contact</a>
+<nav class="menu" id="menu" aria-label="Main navigation">
+
+    <div class="menu-label">
+        Navigation
+    </div>
+
+    <a href="index.html">
+        Home
+    </a>
+
+    <a href="about.html">
+        About Us
+    </a>
+
+    <a href="contact.html" class="current">
+        Contact
+    </a>
+
 </nav>
 
-<div class="container">
+<div class="page">
 
-<h1>Velita</h1>
+    <!-- HERO -->
 
-<div class="subtitle">CONTACT</div>
+    <header class="hero content">
 
-<div class="line"></div>
+        <div class="hero-copy">
 
-<h2>COMING SOON</h2>
+            <div class="eyebrow">
+                Contact Velita
+            </div>
 
-<p>
-We are currently preparing this page.
-</p>
+            <div class="logo">
+                Velita
+            </div>
 
-<div class="contact">
-Contact: <a href="mailto:hello@velita.co">hello@velita.co</a>
-</div>
+            <h1 class="hero-title">
+                Let’s start a
+                <strong>conversation.</strong>
+            </h1>
 
-<div class="footer">
-© 2026 Velita. All rights reserved.
-</div>
+            <p class="hero-description">
+                Have a question about Velita, Project Nova or a
+                potential collaboration? Get in touch through email
+                or Instagram.
+            </p>
+
+            <div class="hero-note">
+
+                <span class="hero-note-dot"></span>
+
+                Velita is currently focused on developing Project Nova
+
+            </div>
+
+        </div>
+
+        <div class="contact-panel">
+
+            <div class="panel-label">
+                Contact Details
+            </div>
+
+            <a
+                class="contact-method"
+                href="mailto:hello@velita.co"
+            >
+
+                <div class="method-top">
+
+                    <div class="method-label">
+                        General Enquiries
+                    </div>
+
+                    <div class="method-arrow">
+                        →
+                    </div>
+
+                </div>
+
+                <div class="method-value">
+                    hello@velita.co
+                </div>
+
+            </a>
+
+            <a
+                class="contact-method"
+                href="https://instagram.com/velita_apps"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <div class="method-top">
+
+                    <div class="method-label">
+                        Instagram
+                    </div>
+
+                    <div class="method-arrow">
+                        →
+                    </div>
+
+                </div>
+
+                <div class="method-value">
+                    @velita_apps
+                </div>
+
+            </a>
+
+            <p class="panel-footer">
+                General questions, feedback and collaboration
+                enquiries are all welcome.
+            </p>
+
+        </div>
+
+    </header>
+
+    <main>
+
+        <!-- ENQUIRY TYPES -->
+
+        <section class="section content reveal">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="section-number">
+                        01 / Get In Touch
+                    </div>
+
+                    <h2 class="section-title">
+                        What can we talk about?
+                    </h2>
+
+                </div>
+
+                <p class="section-description">
+                    All enquiries can be sent through the same
+                    Velita email address.
+                </p>
+
+            </div>
+
+            <div class="enquiry-grid">
+
+                <article class="enquiry-card">
+
+                    <div class="enquiry-number">
+                        01
+                    </div>
+
+                    <h3 class="enquiry-title">
+                        General Questions
+                    </h3>
+
+                    <p class="enquiry-text">
+                        Questions about Velita, our work or the
+                        direction of the studio.
+                    </p>
+
+                </article>
+
+                <article class="enquiry-card">
+
+                    <div class="enquiry-number">
+                        02
+                    </div>
+
+                    <h3 class="enquiry-title">
+                        Project Enquiries
+                    </h3>
+
+                    <p class="enquiry-text">
+                        Enquiries relating to Project Nova and
+                        future Velita applications.
+                    </p>
+
+                </article>
+
+                <article class="enquiry-card">
+
+                    <div class="enquiry-number">
+                        03
+                    </div>
+
+                    <h3 class="enquiry-title">
+                        Collaborations
+                    </h3>
+
+                    <p class="enquiry-text">
+                        Ideas for creative, technical or commercial
+                        collaboration opportunities.
+                    </p>
+
+                </article>
+
+                <article class="enquiry-card">
+
+                    <div class="enquiry-number">
+                        04
+                    </div>
+
+                    <h3 class="enquiry-title">
+                        Feedback
+                    </h3>
+
+                    <p class="enquiry-text">
+                        Thoughts, suggestions or feedback relating
+                        to Velita and its products.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- CURRENT FOCUS -->
+
+        <section class="section content reveal">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="section-number">
+                        02 / Current Focus
+                    </div>
+
+                    <h2 class="section-title">
+                        Building our first application.
+                    </h2>
+
+                </div>
+
+                <p class="section-description">
+                    Project Nova is currently progressing through
+                    active design and development.
+                </p>
+
+            </div>
+
+            <div class="project-note">
+
+                <div class="note-copy">
+
+                    <div class="note-label">
+                        Project Nova
+                    </div>
+
+                    <h3 class="note-title">
+                        Velita’s first consumer mobile application
+                        is taking shape.
+                    </h3>
+
+                    <p class="note-text">
+                        Details about the application will be revealed
+                        gradually as development progresses. Questions
+                        about Velita and general collaboration enquiries
+                        remain welcome in the meantime.
+                    </p>
+
+                </div>
+
+                <div class="note-meta">
+
+                    <div class="note-meta-card">
+
+                        <div class="note-meta-label">
+                            Status
+                        </div>
+
+                        <div class="note-meta-value">
+                            In Development
+                        </div>
+
+                    </div>
+
+                    <div class="note-meta-card">
+
+                        <div class="note-meta-label">
+                            Target Release
+                        </div>
+
+                        <div class="note-meta-value">
+                            Q4 2026
+                        </div>
+
+                    </div>
+
+                    <div class="note-meta-card">
+
+                        <div class="note-meta-label">
+                            More Information
+                        </div>
+
+                        <div class="note-meta-value">
+                            Coming During Development
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- CTA -->
+
+        <section class="section content reveal">
+
+            <div class="cta-card">
+
+                <div class="cta-content">
+
+                    <h2 class="cta-title">
+                        Have something in mind?
+                    </h2>
+
+                    <p class="cta-text">
+                        Send an email to Velita and tell us what
+                        you would like to discuss.
+                    </p>
+
+                    <div class="cta-actions">
+
+                        <a
+                            class="primary-button"
+                            href="mailto:hello@velita.co"
+                        >
+                            Send an Email
+                            <span>→</span>
+                        </a>
+
+                        <a
+                            class="secondary-button"
+                            href="about.html"
+                        >
+                            About Velita
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="content">
+
+            <div class="footer-inner">
+
+                <div class="footer-brand">
+
+                    <div class="footer-logo">
+                        Velita
+                    </div>
+
+                    <div class="footer-tagline">
+                        Mobile App Development
+                    </div>
+
+                </div>
+
+                <div class="footer-links">
+
+                    <a href="index.html">
+                        Home
+                    </a>
+
+                    <a href="about.html">
+                        About Us
+                    </a>
+
+                    <a href="contact.html">
+                        Contact
+                    </a>
+
+                    <a href="mailto:hello@velita.co">
+                        hello@velita.co
+                    </a>
+
+                    <a
+                        href="https://instagram.com/velita_apps"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Instagram
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="copyright">
+                © 2026 Velita. All rights reserved.
+            </div>
+
+        </div>
+
+    </footer>
 
 </div>
 
@@ -275,27 +1695,95 @@ const menuButton = document.getElementById("menuButton");
 const menu = document.getElementById("menu");
 const menuOverlay = document.getElementById("menuOverlay");
 
-function toggleMenu(){
-    menu.classList.toggle("active");
-    menuOverlay.classList.toggle("active");
+function openMenu(){
+
+    menu.classList.add("active");
+    menuOverlay.classList.add("active");
+    menuButton.classList.add("active");
+
+    menuButton.setAttribute("aria-expanded", "true");
+    menuButton.setAttribute("aria-label", "Close menu");
+
 }
 
 function closeMenu(){
+
     menu.classList.remove("active");
     menuOverlay.classList.remove("active");
+    menuButton.classList.remove("active");
+
+    menuButton.setAttribute("aria-expanded", "false");
+    menuButton.setAttribute("aria-label", "Open menu");
+
+}
+
+function toggleMenu(){
+
+    if(menu.classList.contains("active")){
+        closeMenu();
+    }else{
+        openMenu();
+    }
+
 }
 
 menuButton.addEventListener("click", toggleMenu);
 menuOverlay.addEventListener("click", closeMenu);
 
 document.addEventListener("keydown", function(event){
+
     if(event.key === "Escape"){
         closeMenu();
     }
+
 });
+
+menu.querySelectorAll("a").forEach(function(link){
+
+    link.addEventListener("click", closeMenu);
+
+});
+
+const revealElements = document.querySelectorAll(".reveal");
+
+if("IntersectionObserver" in window){
+
+    const revealObserver = new IntersectionObserver(
+
+        function(entries, observer){
+
+            entries.forEach(function(entry){
+
+                if(entry.isIntersecting){
+
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold:0.12
+        }
+
+    );
+
+    revealElements.forEach(function(element){
+        revealObserver.observe(element);
+    });
+
+}else{
+
+    revealElements.forEach(function(element){
+        element.classList.add("visible");
+    });
+
+}
 
 </script>
 
 </body>
-
 </html>
