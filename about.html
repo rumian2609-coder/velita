@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>About Us | Velita</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Parisienne&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#E9DFD3;
+    color:#4B3528;
+    font-family:'Manrope',sans-serif;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    min-height:100vh;
+    text-align:center;
+    padding:30px;
+}
+
+/* MENU BUTTON */
+
+.menu-button{
+    position:fixed;
+    top:30px;
+    right:30px;
+    z-index:1001;
+
+    width:45px;
+    height:45px;
+
+    border:none;
+    background:transparent;
+    cursor:pointer;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:6px;
+}
+
+.menu-button span{
+    width:28px;
+    height:2px;
+    background:#4B3528;
+}
+
+/* OVERLAY */
+
+.menu-overlay{
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.25);
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.3s;
+    z-index:999;
+}
+
+.menu-overlay.active{
+    opacity:1;
+    visibility:visible;
+}
+
+/* MENU */
+
+.menu{
+    position:fixed;
+    top:0;
+    right:-350px;
+
+    width:320px;
+    max-width:85%;
+    height:100vh;
+
+    background:#4B3528;
+    color:#E9DFD3;
+
+    padding:110px 45px;
+
+    transition:.35s;
+    z-index:1000;
+
+    text-align:left;
+}
+
+.menu.active{
+    right:0;
+}
+
+.menu a{
+    display:block;
+
+    color:#E9DFD3;
+    text-decoration:none;
+
+    font-size:24px;
+    font-weight:300;
+
+    margin-bottom:30px;
+    transition:.2s;
+}
+
+.menu a:hover{
+    opacity:.6;
+}
+
+.menu a.current{
+    font-weight:600;
+}
+
+/* PAGE CONTENT */
+
+.container{
+    max-width:700px;
+    padding:30px;
+}
+
+h1{
+    font-family:'Parisienne',cursive;
+    font-size:110px;
+    font-weight:400;
+    margin-bottom:15px;
+}
+
+.subtitle{
+    letter-spacing:6px;
+    font-size:18px;
+    margin-bottom:50px;
+}
+
+.line{
+    width:70px;
+    height:1px;
+    background:#4B3528;
+    margin:0 auto 50px;
+    opacity:.8;
+}
+
+h2{
+    font-size:44px;
+    font-weight:300;
+    letter-spacing:8px;
+    margin-bottom:30px;
+}
+
+p{
+    font-size:20px;
+    line-height:1.8;
+    opacity:.9;
+}
+
+.footer{
+    margin-top:50px;
+    font-size:15px;
+    opacity:.6;
+}
+
+@media(max-width:600px){
+
+    body{
+        padding:20px;
+    }
+
+    .container{
+        padding:20px;
+    }
+
+    h1{
+        font-size:80px;
+    }
+
+    .subtitle{
+        font-size:14px;
+        letter-spacing:4px;
+        margin-bottom:40px;
+    }
+
+    h2{
+        font-size:30px;
+        letter-spacing:5px;
+    }
+
+    p{
+        font-size:17px;
+    }
+
+    .menu-button{
+        top:20px;
+        right:20px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<button class="menu-button" id="menuButton" aria-label="Open menu">
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<nav class="menu" id="menu">
+    <a href="index.html">Home</a>
+    <a href="about.html" class="current">About Us</a>
+    <a href="contact.html">Contact</a>
+</nav>
+
+<div class="container">
+
+<h1>Velita</h1>
+
+<div class="subtitle">ABOUT US</div>
+
+<div class="line"></div>
+
+<h2>COMING SOON</h2>
+
+<p>
+We are currently preparing this page.
+</p>
+
+<div class="footer">
+© 2026 Velita. All rights reserved.
+</div>
+
+</div>
+
+<script>
+
+const menuButton = document.getElementById("menuButton");
+const menu = document.getElementById("menu");
+const menuOverlay = document.getElementById("menuOverlay");
+
+function toggleMenu(){
+    menu.classList.toggle("active");
+    menuOverlay.classList.toggle("active");
+}
+
+function closeMenu(){
+    menu.classList.remove("active");
+    menuOverlay.classList.remove("active");
+}
+
+menuButton.addEventListener("click", toggleMenu);
+menuOverlay.addEventListener("click", closeMenu);
+
+document.addEventListener("keydown", function(event){
+    if(event.key === "Escape"){
+        closeMenu();
+    }
+});
+
+</script>
+
+</body>
+
+</html>
