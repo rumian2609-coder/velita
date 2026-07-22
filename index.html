@@ -52,11 +52,17 @@
 
 html{
     scroll-behavior:smooth;
+    background-color:#4B3528;
+    overscroll-behavior-y:none;
 }
 
 body{
     min-height:100vh;
+    min-height:100dvh;
     overflow-x:hidden;
+    overscroll-behavior-y:none;
+
+    background-color:#4B3528;
 
     background:
         radial-gradient(
@@ -364,7 +370,7 @@ body::after{
 }
 
 .content{
-    width:min(1180px, calc(100% - 60px));
+    width:min(1380px, calc(100% - 80px));
     margin:0 auto;
 }
 
@@ -557,7 +563,7 @@ body::after{
 .phone-stage{
     position:relative;
 
-    min-height:690px;
+    min-height:730px;
 
     display:flex;
     align-items:center;
@@ -602,7 +608,7 @@ body::after{
     position:relative;
     z-index:2;
 
-    width:305px;
+    width:340px;
     aspect-ratio:71.9 / 150;
 
     padding:8px;
