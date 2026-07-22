@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -431,7 +431,7 @@ p{
 
 <div class="line"></div>
 
-<!-- Здрасти Лельо -->
+!-- Здрасти Лельо --
 
 <h2></h2>
 
@@ -551,4 +551,2856 @@ document.addEventListener("keydown", function(event){
 
 </body>
 
+</html>
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="description"
+    content="Velita develops beautifully designed mobile applications that simplify everyday life."
+>
+
+<title>Velita | Mobile App Development</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Parisienne&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+/* ---------------------------------
+   BASE
+--------------------------------- */
+
+:root{
+    --brown:#4B3528;
+    --brown-dark:#2E2019;
+    --brown-light:#644A3A;
+
+    --cream:#E9DFD3;
+    --cream-soft:#D9CABC;
+    --cream-muted:#BCA999;
+
+    --glass:rgba(255,255,255,.055);
+    --glass-strong:rgba(255,255,255,.09);
+    --border:rgba(233,223,211,.22);
+    --border-strong:rgba(233,223,211,.45);
+
+    --shadow:0 30px 80px rgba(20,10,5,.35);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    overflow-x:hidden;
+
+    background:
+        radial-gradient(
+            circle at 16% 12%,
+            rgba(201,166,137,.17),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 86% 29%,
+            rgba(233,223,211,.10),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 45% 72%,
+            rgba(116,80,60,.28),
+            transparent 36%
+        ),
+        linear-gradient(
+            145deg,
+            #51392C 0%,
+            var(--brown) 42%,
+            #3B291F 100%
+        );
+
+    color:var(--cream);
+    font-family:'Manrope',sans-serif;
+    font-weight:300;
+}
+
+/* Subtle background texture */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-3;
+    pointer-events:none;
+
+    opacity:.18;
+
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(255,255,255,.018) 2px,
+            rgba(255,255,255,.018) 3px
+        );
+}
+
+/* Large background V */
+
+body::after{
+    content:"V";
+
+    position:fixed;
+    left:-3vw;
+    top:44%;
+    transform:translateY(-50%);
+
+    z-index:-2;
+    pointer-events:none;
+
+    font-family:'Parisienne',cursive;
+    font-size:min(78vw, 900px);
+    line-height:1;
+
+    color:rgba(233,223,211,.025);
+}
+
+/* ---------------------------------
+   FLOATING BACKGROUND SHAPES
+--------------------------------- */
+
+.background-shapes{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.blur-shape{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(20px);
+    opacity:.45;
+
+    animation:floatShape 12s ease-in-out infinite alternate;
+}
+
+.blur-shape.one{
+    width:250px;
+    height:250px;
+
+    top:8%;
+    right:-80px;
+
+    background:rgba(233,223,211,.12);
+}
+
+.blur-shape.two{
+    width:180px;
+    height:180px;
+
+    top:52%;
+    left:-70px;
+
+    background:rgba(192,149,118,.16);
+    animation-delay:-4s;
+}
+
+.blur-shape.three{
+    width:320px;
+    height:320px;
+
+    bottom:-160px;
+    right:18%;
+
+    background:rgba(233,223,211,.07);
+    animation-delay:-8s;
+}
+
+@keyframes floatShape{
+
+    from{
+        transform:translate3d(0,0,0) scale(1);
+    }
+
+    to{
+        transform:translate3d(25px,-35px,0) scale(1.08);
+    }
+}
+
+/* ---------------------------------
+   MENU
+--------------------------------- */
+
+.menu-button{
+    position:fixed;
+    top:28px;
+    right:30px;
+
+    z-index:1002;
+
+    width:52px;
+    height:52px;
+
+    border:1px solid rgba(233,223,211,.22);
+    border-radius:50%;
+
+    background:rgba(46,32,25,.22);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+
+    cursor:pointer;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:6px;
+
+    transition:
+        background .25s,
+        border-color .25s,
+        transform .25s;
+}
+
+.menu-button:hover{
+    transform:scale(1.05);
+    background:rgba(233,223,211,.10);
+    border-color:rgba(233,223,211,.5);
+}
+
+.menu-button span{
+    display:block;
+
+    width:24px;
+    height:1.5px;
+
+    background:var(--cream);
+
+    transition:
+        transform .3s,
+        opacity .3s;
+}
+
+.menu-button.active span:nth-child(1){
+    transform:translateY(7.5px) rotate(45deg);
+}
+
+.menu-button.active span:nth-child(2){
+    opacity:0;
+}
+
+.menu-button.active span:nth-child(3){
+    transform:translateY(-7.5px) rotate(-45deg);
+}
+
+.menu-overlay{
+    position:fixed;
+    inset:0;
+
+    z-index:999;
+
+    background:rgba(18,10,6,.56);
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:
+        opacity .3s,
+        visibility .3s;
+}
+
+.menu-overlay.active{
+    opacity:1;
+    visibility:visible;
+}
+
+.menu{
+    position:fixed;
+    top:0;
+    right:-380px;
+
+    z-index:1000;
+
+    width:350px;
+    max-width:88%;
+    height:100vh;
+
+    padding:115px 48px 50px;
+
+    background:rgba(233,223,211,.97);
+    color:var(--brown);
+
+    box-shadow:-30px 0 80px rgba(20,10,5,.3);
+
+    transition:right .38s cubic-bezier(.2,.8,.2,1);
+}
+
+.menu.active{
+    right:0;
+}
+
+.menu-label{
+    margin-bottom:34px;
+
+    font-size:12px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+
+    opacity:.55;
+}
+
+.menu a{
+    position:relative;
+
+    display:block;
+    width:max-content;
+
+    margin-bottom:27px;
+
+    color:var(--brown);
+    text-decoration:none;
+
+    font-size:27px;
+    font-weight:300;
+
+    transition:opacity .2s;
+}
+
+.menu a::after{
+    content:"";
+
+    position:absolute;
+    left:0;
+    bottom:-6px;
+
+    width:0;
+    height:1px;
+
+    background:var(--brown);
+
+    transition:width .25s;
+}
+
+.menu a:hover::after,
+.menu a.current::after{
+    width:100%;
+}
+
+.menu a.current{
+    font-weight:600;
+}
+
+/* ---------------------------------
+   PAGE WRAPPER
+--------------------------------- */
+
+.page{
+    position:relative;
+    width:100%;
+}
+
+.content{
+    width:min(1180px, calc(100% - 60px));
+    margin:0 auto;
+}
+
+/* ---------------------------------
+   HERO
+--------------------------------- */
+
+.hero{
+    position:relative;
+
+    min-height:100vh;
+
+    display:grid;
+    grid-template-columns:minmax(0, 1.05fr) minmax(330px, .95fr);
+    align-items:center;
+    gap:70px;
+
+    padding:120px 0 90px;
+}
+
+.hero-copy{
+    position:relative;
+    z-index:2;
+    text-align:left;
+}
+
+.eyebrow{
+    display:flex;
+    align-items:center;
+    gap:16px;
+
+    margin-bottom:24px;
+
+    font-size:13px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+
+    color:var(--cream-soft);
+}
+
+.eyebrow::before{
+    content:"";
+
+    width:42px;
+    height:1px;
+
+    background:var(--cream-soft);
+    opacity:.7;
+}
+
+.logo{
+    font-family:'Parisienne',cursive;
+    font-size:clamp(94px, 12vw, 155px);
+    font-weight:400;
+    line-height:.9;
+
+    margin-left:-5px;
+    margin-bottom:30px;
+
+    text-shadow:0 14px 40px rgba(20,10,5,.18);
+}
+
+.hero-title{
+    max-width:650px;
+
+    margin-bottom:28px;
+
+    font-size:clamp(35px, 4.3vw, 59px);
+    font-weight:300;
+    line-height:1.12;
+    letter-spacing:-2px;
+}
+
+.hero-title strong{
+    font-weight:600;
+}
+
+.hero-description{
+    max-width:585px;
+
+    font-size:19px;
+    line-height:1.8;
+
+    color:rgba(233,223,211,.78);
+}
+
+.hero-actions{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    flex-wrap:wrap;
+
+    margin-top:42px;
+}
+
+.primary-button,
+.secondary-button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+
+    min-height:54px;
+    padding:0 26px;
+
+    text-decoration:none;
+
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:2px;
+    text-transform:uppercase;
+
+    transition:
+        transform .25s,
+        background .25s,
+        color .25s,
+        border-color .25s;
+}
+
+.primary-button{
+    background:var(--cream);
+    color:var(--brown);
+
+    border:1px solid var(--cream);
+}
+
+.primary-button:hover{
+    transform:translateY(-3px);
+    background:#F5ECE1;
+}
+
+.secondary-button{
+    color:var(--cream);
+    border:1px solid rgba(233,223,211,.3);
+    background:rgba(255,255,255,.025);
+}
+
+.secondary-button:hover{
+    transform:translateY(-3px);
+    border-color:rgba(233,223,211,.7);
+    background:rgba(255,255,255,.07);
+}
+
+.button-arrow{
+    font-size:18px;
+    line-height:1;
+}
+
+.hero-note{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    margin-top:32px;
+
+    font-size:13px;
+    letter-spacing:1px;
+
+    color:rgba(233,223,211,.58);
+}
+
+.live-dot{
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+    background:#D8B89A;
+
+    box-shadow:0 0 0 7px rgba(216,184,154,.08);
+
+    animation:pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes pulse{
+
+    0%,
+    100%{
+        box-shadow:0 0 0 5px rgba(216,184,154,.08);
+    }
+
+    50%{
+        box-shadow:0 0 0 11px rgba(216,184,154,.025);
+    }
+}
+
+/* ---------------------------------
+   PHONE MOCKUP
+--------------------------------- */
+
+.phone-stage{
+    position:relative;
+
+    min-height:690px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.phone-glow{
+    position:absolute;
+
+    width:440px;
+    height:440px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(233,223,211,.18) 0%,
+            rgba(205,165,134,.08) 45%,
+            transparent 70%
+        );
+
+    filter:blur(6px);
+
+    animation:phoneGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes phoneGlow{
+
+    from{
+        transform:scale(.94);
+        opacity:.75;
+    }
+
+    to{
+        transform:scale(1.06);
+        opacity:1;
+    }
+}
+
+.phone{
+    position:relative;
+    z-index:2;
+
+    width:305px;
+    aspect-ratio:71.9 / 150;
+
+    padding:8px;
+
+    border-radius:56px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #D9C7B8 0%,
+            #745848 13%,
+            #291D17 45%,
+            #9F806B 77%,
+            #39271F 100%
+        );
+
+    box-shadow:
+        0 45px 90px rgba(15,7,4,.48),
+        0 12px 35px rgba(15,7,4,.35),
+        inset 0 0 0 1px rgba(255,255,255,.25);
+
+    transform:rotate(3deg);
+
+    transition:transform .5s cubic-bezier(.2,.8,.2,1);
+}
+
+.phone-stage:hover .phone{
+    transform:rotate(0deg) translateY(-8px);
+}
+
+.phone::before{
+    content:"";
+
+    position:absolute;
+    left:-4px;
+    top:135px;
+
+    width:4px;
+    height:78px;
+
+    border-radius:3px 0 0 3px;
+
+    background:#34251E;
+
+    box-shadow:
+        0 103px 0 #34251E,
+        0 160px 0 #34251E;
+}
+
+.phone::after{
+    content:"";
+
+    position:absolute;
+    right:-4px;
+    top:190px;
+
+    width:4px;
+    height:105px;
+
+    border-radius:0 3px 3px 0;
+
+    background:#34251E;
+}
+
+.phone-screen{
+    position:relative;
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    border-radius:49px;
+
+    background:
+        radial-gradient(
+            circle at 78% 12%,
+            rgba(222,190,163,.22),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(150,107,82,.22),
+            transparent 40%
+        ),
+        linear-gradient(
+            160deg,
+            #392820 0%,
+            #4B3528 45%,
+            #2E2019 100%
+        );
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.11),
+        inset 0 0 45px rgba(0,0,0,.16);
+}
+
+.dynamic-island{
+    position:absolute;
+    top:16px;
+    left:50%;
+    transform:translateX(-50%);
+
+    z-index:5;
+
+    width:92px;
+    height:27px;
+
+    border-radius:22px;
+
+    background:#090807;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.35),
+        inset 0 0 0 1px rgba(255,255,255,.035);
+}
+
+.phone-status{
+    position:absolute;
+    top:21px;
+    left:23px;
+    right:23px;
+
+    z-index:4;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    font-size:10px;
+    font-weight:600;
+}
+
+.status-icons{
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.signal{
+    display:flex;
+    align-items:flex-end;
+    gap:2px;
+}
+
+.signal span{
+    display:block;
+    width:2px;
+
+    border-radius:2px;
+    background:var(--cream);
+}
+
+.signal span:nth-child(1){
+    height:3px;
+}
+
+.signal span:nth-child(2){
+    height:5px;
+}
+
+.signal span:nth-child(3){
+    height:7px;
+}
+
+.signal span:nth-child(4){
+    height:9px;
+}
+
+.battery{
+    width:17px;
+    height:8px;
+
+    padding:1px;
+
+    border:1px solid rgba(233,223,211,.7);
+    border-radius:3px;
+}
+
+.battery::after{
+    content:"";
+
+    display:block;
+
+    width:72%;
+    height:100%;
+
+    border-radius:1px;
+    background:var(--cream);
+}
+
+.phone-content{
+    position:relative;
+
+    height:100%;
+
+    display:flex;
+    flex-direction:column;
+
+    padding:72px 22px 24px;
+}
+
+.phone-small-label{
+    margin-bottom:12px;
+
+    font-size:9px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.54);
+}
+
+.phone-logo{
+    font-family:'Parisienne',cursive;
+    font-size:52px;
+    line-height:1;
+
+    margin-bottom:7px;
+}
+
+.phone-project{
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:3px;
+
+    color:rgba(233,223,211,.75);
+}
+
+.phone-feature{
+    position:relative;
+
+    margin-top:27px;
+    min-height:175px;
+
+    overflow:hidden;
+
+    padding:22px;
+
+    border:1px solid rgba(233,223,211,.14);
+    border-radius:25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.09),
+            rgba(255,255,255,.025)
+        );
+
+    box-shadow:
+        0 20px 35px rgba(15,7,4,.16),
+        inset 0 1px 0 rgba(255,255,255,.08);
+
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+}
+
+.phone-feature::before{
+    content:"";
+
+    position:absolute;
+    width:120px;
+    height:120px;
+
+    right:-36px;
+    bottom:-48px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            rgba(233,223,211,.28),
+            rgba(188,145,113,.08) 58%,
+            transparent 62%
+        );
+}
+
+.mockup-line{
+    height:7px;
+
+    margin-bottom:10px;
+
+    border-radius:10px;
+
+    background:rgba(233,223,211,.17);
+}
+
+.mockup-line.one{
+    width:47%;
+}
+
+.mockup-line.two{
+    width:78%;
+}
+
+.mockup-line.three{
+    width:62%;
+}
+
+.mockup-number{
+    margin-top:25px;
+
+    font-size:45px;
+    font-weight:300;
+    letter-spacing:-3px;
+
+    color:rgba(233,223,211,.85);
+}
+
+.mockup-caption{
+    margin-top:2px;
+
+    font-size:9px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.48);
+}
+
+.mini-cards{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+
+    margin-top:12px;
+}
+
+.mini-card{
+    min-height:82px;
+
+    padding:15px;
+
+    border:1px solid rgba(233,223,211,.11);
+    border-radius:20px;
+
+    background:rgba(255,255,255,.04);
+}
+
+.mini-card-icon{
+    width:28px;
+    height:28px;
+
+    margin-bottom:12px;
+
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(233,223,211,.28),
+            rgba(233,223,211,.07)
+        );
+}
+
+.mini-card-line{
+    width:75%;
+    height:5px;
+
+    margin-bottom:6px;
+
+    border-radius:8px;
+    background:rgba(233,223,211,.17);
+}
+
+.mini-card-line.short{
+    width:46%;
+}
+
+.phone-navigation{
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+
+    margin-top:auto;
+    padding-top:18px;
+}
+
+.nav-dot{
+    width:8px;
+    height:8px;
+
+    border:1px solid rgba(233,223,211,.28);
+    border-radius:50%;
+}
+
+.nav-dot.active{
+    width:27px;
+
+    border-radius:10px;
+    border:none;
+
+    background:rgba(233,223,211,.7);
+}
+
+.home-indicator{
+    position:absolute;
+    bottom:9px;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:95px;
+    height:4px;
+
+    border-radius:4px;
+    background:rgba(233,223,211,.75);
+}
+
+/* Floating phone labels */
+
+.floating-card{
+    position:absolute;
+    z-index:3;
+
+    padding:15px 18px;
+
+    border:1px solid rgba(233,223,211,.17);
+    border-radius:18px;
+
+    background:rgba(46,32,25,.58);
+
+    box-shadow:0 18px 35px rgba(15,7,4,.2);
+
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+
+    animation:floatCard 4s ease-in-out infinite alternate;
+}
+
+.floating-card.top{
+    top:125px;
+    right:10px;
+}
+
+.floating-card.bottom{
+    left:5px;
+    bottom:125px;
+
+    animation-delay:-2s;
+}
+
+.floating-card-label{
+    margin-bottom:5px;
+
+    font-size:9px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.5);
+}
+
+.floating-card-value{
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:1px;
+}
+
+@keyframes floatCard{
+
+    from{
+        transform:translateY(-4px);
+    }
+
+    to{
+        transform:translateY(8px);
+    }
+}
+
+/* ---------------------------------
+   SHARED SECTIONS
+--------------------------------- */
+
+.section{
+    position:relative;
+    padding:115px 0;
+}
+
+.section-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:30px;
+
+    margin-bottom:48px;
+
+    text-align:left;
+}
+
+.section-number{
+    margin-bottom:13px;
+
+    font-size:12px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.48);
+}
+
+.section-title{
+    font-size:clamp(34px, 5vw, 57px);
+    font-weight:300;
+    line-height:1.12;
+    letter-spacing:-2px;
+}
+
+.section-description{
+    max-width:400px;
+
+    font-size:16px;
+    line-height:1.75;
+
+    color:rgba(233,223,211,.65);
+}
+
+/* ---------------------------------
+   PROJECT SPOTLIGHT
+--------------------------------- */
+
+.spotlight-section{
+    padding-top:90px;
+}
+
+.project-panel{
+    position:relative;
+
+    overflow:hidden;
+
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:55px;
+
+    padding:70px;
+
+    border:1px solid var(--border);
+    border-radius:40px;
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(233,223,211,.12),
+            transparent 36%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.085),
+            rgba(255,255,255,.025)
+        );
+
+    box-shadow:var(--shadow);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+}
+
+.project-panel::before{
+    content:"N";
+
+    position:absolute;
+    right:-25px;
+    bottom:-115px;
+
+    font-family:'Parisienne',cursive;
+    font-size:350px;
+    line-height:1;
+
+    color:rgba(233,223,211,.035);
+}
+
+.project-copy{
+    position:relative;
+    z-index:1;
+
+    text-align:left;
+}
+
+.project-eyebrow{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    margin-bottom:22px;
+
+    font-size:12px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.58);
+}
+
+.project-eyebrow::before{
+    content:"";
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+    background:#D6B493;
+}
+
+.project-title{
+    margin-bottom:24px;
+
+    font-size:clamp(38px, 5vw, 64px);
+    font-weight:500;
+    letter-spacing:-2px;
+}
+
+.project-copy p{
+    max-width:560px;
+
+    font-size:18px;
+    line-height:1.8;
+
+    color:rgba(233,223,211,.72);
+}
+
+.project-meta{
+    position:relative;
+    z-index:1;
+
+    display:grid;
+    align-content:center;
+    gap:14px;
+}
+
+.meta-card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+
+    min-height:92px;
+    padding:22px 24px;
+
+    border:1px solid rgba(233,223,211,.15);
+    border-radius:22px;
+
+    background:rgba(33,22,17,.22);
+}
+
+.meta-label{
+    font-size:11px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.5);
+}
+
+.meta-value{
+    text-align:right;
+
+    font-size:16px;
+    font-weight:600;
+    letter-spacing:1px;
+}
+
+.status-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:9px 13px;
+
+    border:1px solid rgba(233,223,211,.22);
+    border-radius:30px;
+
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.status-pill::before{
+    content:"";
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+    background:#D6B493;
+}
+
+.project-link{
+    display:inline-flex;
+    align-items:center;
+    gap:13px;
+
+    margin-top:35px;
+
+    color:var(--cream);
+    text-decoration:none;
+
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.project-link span{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    width:38px;
+    height:38px;
+
+    border:1px solid rgba(233,223,211,.26);
+    border-radius:50%;
+
+    transition:
+        transform .25s,
+        background .25s,
+        color .25s;
+}
+
+.project-link:hover span{
+    transform:translateX(5px);
+    background:var(--cream);
+    color:var(--brown);
+}
+
+/* ---------------------------------
+   PRINCIPLES STRIP
+--------------------------------- */
+
+.principles{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+
+    overflow:hidden;
+
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+}
+
+.principle{
+    position:relative;
+
+    min-height:250px;
+    padding:42px 34px;
+
+    text-align:left;
+
+    transition:background .3s;
+}
+
+.principle:not(:last-child){
+    border-right:1px solid var(--border);
+}
+
+.principle:hover{
+    background:rgba(255,255,255,.045);
+}
+
+.principle-number{
+    margin-bottom:62px;
+
+    font-size:11px;
+    letter-spacing:3px;
+
+    color:rgba(233,223,211,.45);
+}
+
+.principle-title{
+    margin-bottom:13px;
+
+    font-size:21px;
+    font-weight:500;
+}
+
+.principle-text{
+    max-width:280px;
+
+    font-size:14px;
+    line-height:1.7;
+
+    color:rgba(233,223,211,.6);
+}
+
+/* ---------------------------------
+   JOURNEY
+--------------------------------- */
+
+.journey-panel{
+    padding:65px 55px;
+
+    border:1px solid var(--border);
+    border-radius:35px;
+
+    background:rgba(255,255,255,.035);
+
+    box-shadow:0 30px 70px rgba(20,10,5,.18);
+}
+
+.journey-track{
+    position:relative;
+
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+
+    margin-top:25px;
+}
+
+.journey-track::before{
+    content:"";
+
+    position:absolute;
+    top:17px;
+    left:12.5%;
+    right:12.5%;
+
+    height:1px;
+
+    background:rgba(233,223,211,.2);
+}
+
+.journey-track::after{
+    content:"";
+
+    position:absolute;
+    top:17px;
+    left:12.5%;
+
+    width:50%;
+    height:1px;
+
+    background:var(--cream-soft);
+}
+
+.journey-step{
+    position:relative;
+    z-index:1;
+
+    text-align:center;
+}
+
+.step-dot{
+    width:35px;
+    height:35px;
+
+    margin:0 auto 22px;
+
+    border:1px solid rgba(233,223,211,.24);
+    border-radius:50%;
+
+    background:var(--brown-dark);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.step-dot::after{
+    content:"";
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:rgba(233,223,211,.32);
+}
+
+.journey-step.complete .step-dot,
+.journey-step.current .step-dot{
+    border-color:var(--cream-soft);
+}
+
+.journey-step.complete .step-dot::after{
+    background:var(--cream);
+}
+
+.journey-step.current .step-dot{
+    box-shadow:0 0 0 9px rgba(233,223,211,.055);
+}
+
+.journey-step.current .step-dot::after{
+    background:#D6B493;
+
+    animation:pulseJourney 2s ease-in-out infinite;
+}
+
+@keyframes pulseJourney{
+
+    0%,
+    100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.5);
+    }
+}
+
+.step-title{
+    margin-bottom:7px;
+
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.step-label{
+    font-size:11px;
+    letter-spacing:1px;
+
+    color:rgba(233,223,211,.45);
+}
+
+/* ---------------------------------
+   LATEST UPDATE
+--------------------------------- */
+
+.update-grid{
+    display:grid;
+    grid-template-columns:.72fr 1.28fr;
+    gap:24px;
+}
+
+.update-date-card,
+.update-content-card{
+    border:1px solid var(--border);
+    border-radius:30px;
+
+    background:rgba(255,255,255,.04);
+}
+
+.update-date-card{
+    min-height:300px;
+    padding:40px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+
+    text-align:left;
+}
+
+.update-label{
+    font-size:11px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.48);
+}
+
+.update-month{
+    font-size:57px;
+    font-weight:300;
+    line-height:1;
+    letter-spacing:-3px;
+}
+
+.update-year{
+    margin-top:8px;
+
+    font-size:15px;
+    letter-spacing:5px;
+
+    color:rgba(233,223,211,.55);
+}
+
+.update-content-card{
+    padding:52px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    text-align:left;
+}
+
+.update-title{
+    margin-bottom:22px;
+
+    font-size:clamp(29px, 4vw, 45px);
+    font-weight:400;
+    line-height:1.2;
+    letter-spacing:-1.5px;
+}
+
+.update-text{
+    max-width:630px;
+
+    font-size:17px;
+    line-height:1.8;
+
+    color:rgba(233,223,211,.65);
+}
+
+/* ---------------------------------
+   CALL TO ACTION
+--------------------------------- */
+
+.cta{
+    text-align:center;
+}
+
+.cta-card{
+    position:relative;
+
+    overflow:hidden;
+
+    padding:90px 50px;
+
+    border:1px solid var(--border);
+    border-radius:42px;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(233,223,211,.14),
+            transparent 47%
+        ),
+        rgba(255,255,255,.045);
+}
+
+.cta-card::before{
+    content:"Velita";
+
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-48%);
+
+    font-family:'Parisienne',cursive;
+    font-size:230px;
+    line-height:1;
+
+    color:rgba(233,223,211,.025);
+    white-space:nowrap;
+}
+
+.cta-content{
+    position:relative;
+    z-index:1;
+}
+
+.cta-title{
+    max-width:780px;
+
+    margin:0 auto 22px;
+
+    font-size:clamp(36px, 5vw, 60px);
+    font-weight:300;
+    line-height:1.15;
+    letter-spacing:-2px;
+}
+
+.cta-text{
+    max-width:590px;
+
+    margin:0 auto;
+
+    font-size:17px;
+    line-height:1.8;
+
+    color:rgba(233,223,211,.65);
+}
+
+.cta-actions{
+    display:flex;
+    justify-content:center;
+    gap:16px;
+    flex-wrap:wrap;
+
+    margin-top:38px;
+}
+
+/* ---------------------------------
+   FOOTER
+--------------------------------- */
+
+.footer{
+    padding:55px 0 45px;
+
+    border-top:1px solid rgba(233,223,211,.13);
+}
+
+.footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:35px;
+}
+
+.footer-brand{
+    text-align:left;
+}
+
+.footer-logo{
+    font-family:'Parisienne',cursive;
+    font-size:46px;
+    line-height:1;
+}
+
+.footer-tagline{
+    margin-top:7px;
+
+    font-size:11px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.42);
+}
+
+.footer-links{
+    display:flex;
+    align-items:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.footer-links a{
+    color:rgba(233,223,211,.65);
+    text-decoration:none;
+
+    font-size:13px;
+
+    transition:color .2s;
+}
+
+.footer-links a:hover{
+    color:var(--cream);
+}
+
+.copyright{
+    margin-top:35px;
+
+    text-align:center;
+
+    font-size:12px;
+    color:rgba(233,223,211,.38);
+}
+
+/* ---------------------------------
+   REVEAL ANIMATION
+--------------------------------- */
+
+.reveal{
+    opacity:0;
+    transform:translateY(30px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* ---------------------------------
+   TABLET
+--------------------------------- */
+
+@media(max-width:960px){
+
+    .content{
+        width:min(100% - 40px, 760px);
+    }
+
+    .hero{
+        grid-template-columns:1fr;
+        gap:25px;
+
+        padding-top:125px;
+        text-align:center;
+    }
+
+    .hero-copy{
+        text-align:center;
+    }
+
+    .eyebrow{
+        justify-content:center;
+    }
+
+    .hero-title,
+    .hero-description{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .hero-actions,
+    .hero-note{
+        justify-content:center;
+    }
+
+    .phone-stage{
+        min-height:650px;
+    }
+
+    .section-heading{
+        display:block;
+        text-align:center;
+    }
+
+    .section-description{
+        margin:22px auto 0;
+    }
+
+    .project-panel{
+        grid-template-columns:1fr;
+        padding:55px;
+    }
+
+    .project-copy{
+        text-align:center;
+    }
+
+    .project-copy p{
+        margin:0 auto;
+    }
+
+    .project-eyebrow{
+        justify-content:center;
+    }
+
+    .project-link{
+        justify-content:center;
+    }
+
+    .principles{
+        grid-template-columns:1fr;
+    }
+
+    .principle{
+        min-height:auto;
+    }
+
+    .principle:not(:last-child){
+        border-right:none;
+        border-bottom:1px solid var(--border);
+    }
+
+    .principle-number{
+        margin-bottom:30px;
+    }
+
+    .update-grid{
+        grid-template-columns:1fr;
+    }
+
+    .update-date-card{
+        min-height:210px;
+    }
+}
+
+/* ---------------------------------
+   MOBILE
+--------------------------------- */
+
+@media(max-width:620px){
+
+    .content{
+        width:calc(100% - 30px);
+    }
+
+    .menu-button{
+        top:18px;
+        right:18px;
+
+        width:48px;
+        height:48px;
+    }
+
+    .menu{
+        padding:105px 38px 40px;
+    }
+
+    .hero{
+        min-height:auto;
+        padding:110px 0 60px;
+    }
+
+    .logo{
+        font-size:88px;
+        margin-bottom:25px;
+    }
+
+    .hero-title{
+        font-size:37px;
+        letter-spacing:-1.5px;
+    }
+
+    .hero-description{
+        font-size:16px;
+    }
+
+    .hero-actions{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .primary-button,
+    .secondary-button{
+        width:100%;
+    }
+
+    .phone-stage{
+        min-height:560px;
+    }
+
+    .phone{
+        width:255px;
+        border-radius:49px;
+    }
+
+    .phone-screen{
+        border-radius:43px;
+    }
+
+    .phone-glow{
+        width:330px;
+        height:330px;
+    }
+
+    .floating-card.top{
+        top:90px;
+        right:-4px;
+    }
+
+    .floating-card.bottom{
+        left:-3px;
+        bottom:90px;
+    }
+
+    .section{
+        padding:80px 0;
+    }
+
+    .section-title{
+        font-size:38px;
+        letter-spacing:-1.5px;
+    }
+
+    .project-panel{
+        padding:42px 24px;
+        border-radius:30px;
+    }
+
+    .project-title{
+        font-size:43px;
+    }
+
+    .project-copy p{
+        font-size:16px;
+    }
+
+    .meta-card{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .meta-value{
+        text-align:left;
+    }
+
+    .principle{
+        padding:36px 27px;
+    }
+
+    .journey-panel{
+        padding:45px 25px;
+    }
+
+    .journey-track{
+        grid-template-columns:1fr;
+        gap:32px;
+    }
+
+    .journey-track::before,
+    .journey-track::after{
+        top:17px;
+        bottom:17px;
+        left:17px;
+
+        width:1px;
+        height:auto;
+        right:auto;
+    }
+
+    .journey-track::after{
+        height:66%;
+    }
+
+    .journey-step{
+        display:grid;
+        grid-template-columns:35px 1fr;
+        column-gap:18px;
+
+        text-align:left;
+    }
+
+    .step-dot{
+        grid-row:1 / 3;
+        margin:0;
+    }
+
+    .step-title{
+        align-self:end;
+    }
+
+    .update-date-card,
+    .update-content-card{
+        border-radius:25px;
+    }
+
+    .update-date-card{
+        min-height:180px;
+        padding:32px;
+    }
+
+    .update-content-card{
+        padding:36px 27px;
+    }
+
+    .update-month{
+        font-size:48px;
+    }
+
+    .cta-card{
+        padding:70px 24px;
+        border-radius:30px;
+    }
+
+    .cta-title{
+        font-size:39px;
+    }
+
+    .cta-actions{
+        flex-direction:column;
+    }
+
+    .footer-inner{
+        align-items:center;
+        flex-direction:column;
+
+        text-align:center;
+    }
+
+    .footer-brand{
+        text-align:center;
+    }
+
+    .footer-links{
+        justify-content:center;
+    }
+}
+
+/* ---------------------------------
+   REDUCED MOTION
+--------------------------------- */
+
+@media(prefers-reduced-motion:reduce){
+
+    html{
+        scroll-behavior:auto;
+    }
+
+    *,
+    *::before,
+    *::after{
+        animation:none !important;
+        transition:none !important;
+    }
+
+    .reveal{
+        opacity:1;
+        transform:none;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="background-shapes" aria-hidden="true">
+    <div class="blur-shape one"></div>
+    <div class="blur-shape two"></div>
+    <div class="blur-shape three"></div>
+</div>
+
+<button
+    class="menu-button"
+    id="menuButton"
+    aria-label="Open menu"
+    aria-expanded="false"
+>
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<nav class="menu" id="menu" aria-label="Main navigation">
+
+    <div class="menu-label">
+        Navigation
+    </div>
+
+    <a href="index.html" class="current">
+        Home
+    </a>
+
+    <a href="about.html">
+        About Us
+    </a>
+
+    <a href="contact.html">
+        Contact
+    </a>
+
+</nav>
+
+<div class="page">
+
+    <!-- HERO -->
+
+    <header class="hero content">
+
+        <div class="hero-copy">
+
+            <div class="eyebrow">
+                Independent App Studio
+            </div>
+
+            <div class="logo">
+                Velita
+            </div>
+
+            <h1 class="hero-title">
+                Beautifully designed apps for
+                <strong>everyday life.</strong>
+            </h1>
+
+            <p class="hero-description">
+                Velita develops thoughtful mobile applications
+                that combine elegant design, intuitive experiences
+                and practical functionality.
+            </p>
+
+            <div class="hero-actions">
+
+                <a
+                    class="primary-button"
+                    href="#project-spotlight"
+                >
+                    Explore Project Nova
+                    <span class="button-arrow">↓</span>
+                </a>
+
+                <a
+                    class="secondary-button"
+                    href="about.html"
+                >
+                    About Velita
+                </a>
+
+            </div>
+
+            <div class="hero-note">
+
+                <span class="live-dot"></span>
+
+                Project Nova is currently in active development
+
+            </div>
+
+        </div>
+
+        <div class="phone-stage" aria-label="Abstract Project Nova app preview">
+
+            <div class="phone-glow"></div>
+
+            <div class="floating-card top">
+
+                <div class="floating-card-label">
+                    Status
+                </div>
+
+                <div class="floating-card-value">
+                    In Development
+                </div>
+
+            </div>
+
+            <div class="floating-card bottom">
+
+                <div class="floating-card-label">
+                    Target
+                </div>
+
+                <div class="floating-card-value">
+                    Q4 2026
+                </div>
+
+            </div>
+
+            <div class="phone">
+
+                <div class="phone-screen">
+
+                    <div class="dynamic-island"></div>
+
+                    <div class="phone-status">
+
+                        <span>9:41</span>
+
+                        <div class="status-icons">
+
+                            <div class="signal">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+                            <div class="battery"></div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="phone-content">
+
+                        <div class="phone-small-label">
+                            Introducing
+                        </div>
+
+                        <div class="phone-logo">
+                            Velita
+                        </div>
+
+                        <div class="phone-project">
+                            PROJECT NOVA
+                        </div>
+
+                        <div class="phone-feature">
+
+                            <div class="mockup-line one"></div>
+                            <div class="mockup-line two"></div>
+                            <div class="mockup-line three"></div>
+
+                            <div class="mockup-number">
+                                01
+                            </div>
+
+                            <div class="mockup-caption">
+                                Designed for everyday life
+                            </div>
+
+                        </div>
+
+                        <div class="mini-cards">
+
+                            <div class="mini-card">
+
+                                <div class="mini-card-icon"></div>
+
+                                <div class="mini-card-line"></div>
+                                <div class="mini-card-line short"></div>
+
+                            </div>
+
+                            <div class="mini-card">
+
+                                <div class="mini-card-icon"></div>
+
+                                <div class="mini-card-line"></div>
+                                <div class="mini-card-line short"></div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="phone-navigation">
+
+                            <div class="nav-dot active"></div>
+                            <div class="nav-dot"></div>
+                            <div class="nav-dot"></div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="home-indicator"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <main>
+
+        <!-- PROJECT SPOTLIGHT -->
+
+        <section
+            class="section spotlight-section content reveal"
+            id="project-spotlight"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="section-number">
+                        01 / Project Spotlight
+                    </div>
+
+                    <h2 class="section-title">
+                        Something new is taking shape.
+                    </h2>
+
+                </div>
+
+                <p class="section-description">
+                    Our first application is being thoughtfully
+                    developed from concept to launch.
+                </p>
+
+            </div>
+
+            <div class="project-panel">
+
+                <div class="project-copy">
+
+                    <div class="project-eyebrow">
+                        Our First Application
+                    </div>
+
+                    <h3 class="project-title">
+                        Project Nova
+                    </h3>
+
+                    <p>
+                        Project Nova is Velita's first consumer mobile
+                        application. We are currently shaping its design,
+                        functionality and overall experience before its
+                        planned release.
+                    </p>
+
+                    <a
+                        class="project-link"
+                        href="about.html#current-projects"
+                    >
+                        Discover Project Nova
+
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+                <div class="project-meta">
+
+                    <div class="meta-card">
+
+                        <div class="meta-label">
+                            Status
+                        </div>
+
+                        <div class="meta-value">
+
+                            <span class="status-pill">
+                                In Development
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="meta-card">
+
+                        <div class="meta-label">
+                            Target Release
+                        </div>
+
+                        <div class="meta-value">
+                            Q4 2026
+                        </div>
+
+                    </div>
+
+                    <div class="meta-card">
+
+                        <div class="meta-label">
+                            Platforms
+                        </div>
+
+                        <div class="meta-value">
+                            Mobile
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- PRODUCT PRINCIPLES -->
+
+        <section class="section content reveal">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="section-number">
+                        02 / Built With Purpose
+                    </div>
+
+                    <h2 class="section-title">
+                        Thoughtful from the first tap.
+                    </h2>
+
+                </div>
+
+                <p class="section-description">
+                    Every Velita product begins with simplicity,
+                    usefulness and careful attention to detail.
+                </p>
+
+            </div>
+
+            <div class="principles">
+
+                <article class="principle">
+
+                    <div class="principle-number">
+                        01
+                    </div>
+
+                    <h3 class="principle-title">
+                        Mobile First
+                    </h3>
+
+                    <p class="principle-text">
+                        Experiences designed specifically for the way
+                        people use their phones every day.
+                    </p>
+
+                </article>
+
+                <article class="principle">
+
+                    <div class="principle-number">
+                        02
+                    </div>
+
+                    <h3 class="principle-title">
+                        Simple by Design
+                    </h3>
+
+                    <p class="principle-text">
+                        Clear interfaces that feel natural, focused
+                        and effortless to navigate.
+                    </p>
+
+                </article>
+
+                <article class="principle">
+
+                    <div class="principle-number">
+                        03
+                    </div>
+
+                    <h3 class="principle-title">
+                        Everyday Utility
+                    </h3>
+
+                    <p class="principle-text">
+                        Practical applications built to make ordinary
+                        routines feel a little easier.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- DEVELOPMENT JOURNEY -->
+
+        <section class="section content reveal">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="section-number">
+                        03 / Development Journey
+                    </div>
+
+                    <h2 class="section-title">
+                        From idea to launch.
+                    </h2>
+
+                </div>
+
+                <p class="section-description">
+                    Project Nova has moved beyond its initial concept
+                    and is now in active development.
+                </p>
+
+            </div>
+
+            <div class="journey-panel">
+
+                <div class="journey-track">
+
+                    <div class="journey-step complete">
+
+                        <div class="step-dot"></div>
+
+                        <div class="step-title">
+                            Concept
+                        </div>
+
+                        <div class="step-label">
+                            Completed
+                        </div>
+
+                    </div>
+
+                    <div class="journey-step complete">
+
+                        <div class="step-dot"></div>
+
+                        <div class="step-title">
+                            Design
+                        </div>
+
+                        <div class="step-label">
+                            In Progress
+                        </div>
+
+                    </div>
+
+                    <div class="journey-step current">
+
+                        <div class="step-dot"></div>
+
+                        <div class="step-title">
+                            Development
+                        </div>
+
+                        <div class="step-label">
+                            Current Stage
+                        </div>
+
+                    </div>
+
+                    <div class="journey-step">
+
+                        <div class="step-dot"></div>
+
+                        <div class="step-title">
+                            Launch
+                        </div>
+
+                        <div class="step-label">
+                            Q4 2026
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- LATEST UPDATE -->
+
+        <section class="section content reveal">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="section-number">
+                        04 / Latest Update
+                    </div>
+
+                    <h2 class="section-title">
+                        Development is underway.
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <div class="update-grid">
+
+                <div class="update-date-card">
+
+                    <div class="update-label">
+                        Project Update
+                    </div>
+
+                    <div>
+
+                        <div class="update-month">
+                            July
+                        </div>
+
+                        <div class="update-year">
+                            2026
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="update-content-card">
+
+                    <h3 class="update-title">
+                        Project Nova enters active development.
+                    </h3>
+
+                    <p class="update-text">
+                        We are currently refining the application's
+                        design, core functionality and overall user
+                        experience. More information will be shared
+                        as development progresses.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- CALL TO ACTION -->
+
+        <section class="section cta content reveal">
+
+            <div class="cta-card">
+
+                <div class="cta-content">
+
+                    <h2 class="cta-title">
+                        The first chapter of Velita is being built now.
+                    </h2>
+
+                    <p class="cta-text">
+                        Learn more about our approach, our vision and
+                        the project currently in development.
+                    </p>
+
+                    <div class="cta-actions">
+
+                        <a
+                            class="primary-button"
+                            href="about.html#current-projects"
+                        >
+                            Discover Project Nova
+                            <span class="button-arrow">→</span>
+                        </a>
+
+                        <a
+                            class="secondary-button"
+                            href="contact.html"
+                        >
+                            Contact Velita
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="content">
+
+            <div class="footer-inner">
+
+                <div class="footer-brand">
+
+                    <div class="footer-logo">
+                        Velita
+                    </div>
+
+                    <div class="footer-tagline">
+                        Mobile App Development
+                    </div>
+
+                </div>
+
+                <div class="footer-links">
+
+                    <a href="index.html">
+                        Home
+                    </a>
+
+                    <a href="about.html">
+                        About Us
+                    </a>
+
+                    <a href="contact.html">
+                        Contact
+                    </a>
+
+                    <a href="mailto:hello@velita.co">
+                        hello@velita.co
+                    </a>
+
+                    <a
+                        href="https://instagram.com/velita_apps"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Instagram
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="copyright">
+                © 2026 Velita. All rights reserved.
+            </div>
+
+        </div>
+
+    </footer>
+
+</div>
+
+<script>
+
+const menuButton = document.getElementById("menuButton");
+const menu = document.getElementById("menu");
+const menuOverlay = document.getElementById("menuOverlay");
+
+function openMenu(){
+
+    menu.classList.add("active");
+    menuOverlay.classList.add("active");
+    menuButton.classList.add("active");
+
+    menuButton.setAttribute("aria-expanded", "true");
+    menuButton.setAttribute("aria-label", "Close menu");
+
+}
+
+function closeMenu(){
+
+    menu.classList.remove("active");
+    menuOverlay.classList.remove("active");
+    menuButton.classList.remove("active");
+
+    menuButton.setAttribute("aria-expanded", "false");
+    menuButton.setAttribute("aria-label", "Open menu");
+
+}
+
+function toggleMenu(){
+
+    if(menu.classList.contains("active")){
+        closeMenu();
+    }else{
+        openMenu();
+    }
+
+}
+
+menuButton.addEventListener("click", toggleMenu);
+menuOverlay.addEventListener("click", closeMenu);
+
+document.addEventListener("keydown", function(event){
+
+    if(event.key === "Escape"){
+        closeMenu();
+    }
+
+});
+
+/* Close the menu after selecting a menu link */
+
+menu.querySelectorAll("a").forEach(function(link){
+
+    link.addEventListener("click", closeMenu);
+
+});
+
+/* Scroll reveal */
+
+const revealElements = document.querySelectorAll(".reveal");
+
+if("IntersectionObserver" in window){
+
+    const revealObserver = new IntersectionObserver(
+
+        function(entries, observer){
+
+            entries.forEach(function(entry){
+
+                if(entry.isIntersecting){
+
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold:0.12
+        }
+
+    );
+
+    revealElements.forEach(function(element){
+        revealObserver.observe(element);
+    });
+
+}else{
+
+    revealElements.forEach(function(element){
+        element.classList.add("visible");
+    });
+
+}
+
+</script>
+
+</body>
 </html>
