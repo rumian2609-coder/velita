@@ -5,14 +5,39 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<meta
+    name="description"
+    content="Learn more about Velita, our approach to mobile app development and Project Nova."
+>
+
 <title>About Us | Velita</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Parisienne&display=swap" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Parisienne&display=swap"
+    rel="stylesheet"
+>
 
 <style>
+
+/* ---------------------------------
+   BASE
+--------------------------------- */
+
+:root{
+    --brown:#4B3528;
+    --brown-dark:#2E2019;
+    --brown-light:#644A3A;
+
+    --cream:#E9DFD3;
+    --cream-soft:#D9CABC;
+    --cream-muted:#BCA999;
+
+    --border:rgba(233,223,211,.22);
+    --shadow:0 30px 80px rgba(20,10,5,.35);
+}
 
 *{
     margin:0;
@@ -22,35 +47,174 @@
 
 html{
     scroll-behavior:smooth;
+    background:#4B3528;
+    overscroll-behavior-y:none;
 }
 
 body{
-    background:#E9DFD3;
-    color:#4B3528;
-    font-family:'Manrope',sans-serif;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
     min-height:100vh;
-    text-align:center;
-    padding:80px 30px 40px;
+    min-height:100dvh;
+
+    overflow-x:hidden;
+    overscroll-behavior-y:none;
+
+    background-color:#4B3528;
+
+    background:
+        radial-gradient(
+            circle at 16% 12%,
+            rgba(201,166,137,.17),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 86% 29%,
+            rgba(233,223,211,.10),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 45% 72%,
+            rgba(116,80,60,.28),
+            transparent 36%
+        ),
+        linear-gradient(
+            145deg,
+            #51392C 0%,
+            var(--brown) 42%,
+            #3B291F 100%
+        );
+
+    color:var(--cream);
+    font-family:'Manrope',sans-serif;
+    font-weight:300;
 }
 
-/* MENU BUTTON */
+body::before{
+    content:"";
+
+    position:fixed;
+    inset:0;
+    z-index:-3;
+
+    pointer-events:none;
+    opacity:.18;
+
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(255,255,255,.018) 2px,
+            rgba(255,255,255,.018) 3px
+        );
+}
+
+body::after{
+    content:"V";
+
+    position:fixed;
+    left:-3vw;
+    top:44%;
+
+    z-index:-2;
+    pointer-events:none;
+
+    transform:translateY(-50%);
+
+    font-family:'Parisienne',cursive;
+    font-size:min(78vw, 900px);
+    line-height:1;
+
+    color:rgba(233,223,211,.025);
+}
+
+/* ---------------------------------
+   BACKGROUND SHAPES
+--------------------------------- */
+
+.background-shapes{
+    position:fixed;
+    inset:0;
+
+    z-index:-1;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.blur-shape{
+    position:absolute;
+
+    border-radius:50%;
+    filter:blur(20px);
+    opacity:.45;
+
+    animation:floatShape 12s ease-in-out infinite alternate;
+}
+
+.blur-shape.one{
+    width:250px;
+    height:250px;
+
+    top:8%;
+    right:-80px;
+
+    background:rgba(233,223,211,.12);
+}
+
+.blur-shape.two{
+    width:180px;
+    height:180px;
+
+    top:52%;
+    left:-70px;
+
+    background:rgba(192,149,118,.16);
+    animation-delay:-4s;
+}
+
+.blur-shape.three{
+    width:320px;
+    height:320px;
+
+    bottom:-160px;
+    right:18%;
+
+    background:rgba(233,223,211,.07);
+    animation-delay:-8s;
+}
+
+@keyframes floatShape{
+
+    from{
+        transform:translate3d(0,0,0) scale(1);
+    }
+
+    to{
+        transform:translate3d(25px,-35px,0) scale(1.08);
+    }
+}
+
+/* ---------------------------------
+   MENU
+--------------------------------- */
 
 .menu-button{
     position:fixed;
-    top:30px;
+    top:28px;
     right:30px;
-    z-index:1001;
 
-    width:45px;
-    height:45px;
+    z-index:1002;
 
-    border:none;
-    background:transparent;
+    width:52px;
+    height:52px;
+
+    border:1px solid rgba(233,223,211,.22);
+    border-radius:50%;
+
+    background:rgba(46,32,25,.22);
+
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+
     cursor:pointer;
 
     display:flex;
@@ -58,28 +222,59 @@ body{
     justify-content:center;
     align-items:center;
     gap:6px;
+
+    transition:
+        background .25s,
+        border-color .25s,
+        transform .25s;
+}
+
+.menu-button:hover{
+    transform:scale(1.05);
+
+    background:rgba(233,223,211,.10);
+    border-color:rgba(233,223,211,.5);
 }
 
 .menu-button span{
-    width:28px;
-    height:2px;
-    background:#4B3528;
-    transition:.3s;
+    display:block;
+
+    width:24px;
+    height:1.5px;
+
+    background:var(--cream);
+
+    transition:
+        transform .3s,
+        opacity .3s;
 }
 
-/* MENU OVERLAY */
+.menu-button.active span:nth-child(1){
+    transform:translateY(7.5px) rotate(45deg);
+}
+
+.menu-button.active span:nth-child(2){
+    opacity:0;
+}
+
+.menu-button.active span:nth-child(3){
+    transform:translateY(-7.5px) rotate(-45deg);
+}
 
 .menu-overlay{
     position:fixed;
     inset:0;
 
-    background:rgba(0,0,0,.25);
+    z-index:999;
+
+    background:rgba(18,10,6,.56);
 
     opacity:0;
     visibility:hidden;
 
-    transition:.3s;
-    z-index:999;
+    transition:
+        opacity .3s,
+        visibility .3s;
 }
 
 .menu-overlay.active{
@@ -87,252 +282,1279 @@ body{
     visibility:visible;
 }
 
-/* SLIDE-OUT MENU */
-
 .menu{
     position:fixed;
     top:0;
-    right:-350px;
+    right:-380px;
 
-    width:320px;
-    max-width:85%;
-    height:100vh;
-
-    background:#4B3528;
-    color:#E9DFD3;
-
-    padding:110px 45px;
-
-    transition:.35s;
     z-index:1000;
 
-    text-align:left;
+    width:350px;
+    max-width:88%;
+    height:100vh;
+
+    padding:115px 48px 50px;
+
+    background:rgba(233,223,211,.97);
+    color:var(--brown);
+
+    box-shadow:-30px 0 80px rgba(20,10,5,.3);
+
+    transition:right .38s cubic-bezier(.2,.8,.2,1);
 }
 
 .menu.active{
     right:0;
 }
 
-.menu a{
-    display:block;
+.menu-label{
+    margin-bottom:34px;
 
-    color:#E9DFD3;
-    text-decoration:none;
+    font-size:12px;
+    letter-spacing:4px;
+    text-transform:uppercase;
 
-    font-size:24px;
-    font-weight:300;
-
-    margin-bottom:30px;
-    transition:.2s;
+    opacity:.55;
 }
 
-.menu a:hover{
-    opacity:.6;
+.menu a{
+    position:relative;
+
+    display:block;
+    width:max-content;
+
+    margin-bottom:27px;
+
+    color:var(--brown);
+    text-decoration:none;
+
+    font-size:27px;
+    font-weight:300;
+}
+
+.menu a::after{
+    content:"";
+
+    position:absolute;
+    left:0;
+    bottom:-6px;
+
+    width:0;
+    height:1px;
+
+    background:var(--brown);
+
+    transition:width .25s;
+}
+
+.menu a:hover::after,
+.menu a.current::after{
+    width:100%;
 }
 
 .menu a.current{
     font-weight:600;
 }
 
-/* PAGE CONTENT */
+/* ---------------------------------
+   LAYOUT
+--------------------------------- */
 
-.container{
+.page{
+    position:relative;
     width:100%;
-    max-width:760px;
-    padding:30px;
 }
 
-h1{
-    font-family:'Parisienne',cursive;
-    font-size:110px;
-    font-weight:400;
-    margin-bottom:15px;
-}
-
-.subtitle{
-    letter-spacing:6px;
-    font-size:18px;
-    margin-bottom:50px;
-}
-
-.line{
-    width:70px;
-    height:1px;
-    background:#4B3528;
-    margin:0 auto 50px;
-    opacity:.8;
-}
-
-h2{
-    font-size:40px;
-    font-weight:300;
-    letter-spacing:7px;
-    margin-bottom:35px;
-}
-
-p{
-    font-size:20px;
-    line-height:1.8;
-    opacity:.9;
-}
-
-.about-text{
-    margin-bottom:30px;
-}
-
-.section-line{
-    width:70px;
-    height:1px;
-    background:#4B3528;
-    margin:75px auto 65px;
-    opacity:.8;
-}
-
-/* PHILOSOPHY */
-
-.philosophy-heading{
-    font-size:25px;
-    font-weight:600;
-    letter-spacing:3px;
-    margin-bottom:25px;
-}
-
-.philosophy-text{
-    max-width:680px;
+.content{
+    width:min(1380px, calc(100% - 80px));
     margin:0 auto;
 }
 
-/* WHY VELITA */
+/* ---------------------------------
+   BUTTONS
+--------------------------------- */
 
-.values{
+.primary-button,
+.secondary-button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+
+    min-height:54px;
+    padding:0 26px;
+
+    text-decoration:none;
+
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:2px;
+    text-transform:uppercase;
+
+    transition:
+        transform .25s,
+        background .25s,
+        color .25s,
+        border-color .25s;
+}
+
+.primary-button{
+    border:1px solid var(--cream);
+
+    background:var(--cream);
+    color:var(--brown);
+}
+
+.primary-button:hover{
+    transform:translateY(-3px);
+    background:#F5ECE1;
+}
+
+.secondary-button{
+    border:1px solid rgba(233,223,211,.3);
+
+    background:rgba(255,255,255,.025);
+    color:var(--cream);
+}
+
+.secondary-button:hover{
+    transform:translateY(-3px);
+
+    border-color:rgba(233,223,211,.7);
+    background:rgba(255,255,255,.07);
+}
+
+/* ---------------------------------
+   HERO
+--------------------------------- */
+
+.hero{
+    min-height:92vh;
+
     display:grid;
-    grid-template-columns:repeat(2, 1fr);
-    gap:20px;
+    grid-template-columns:minmax(0, 1.05fr) minmax(360px, .95fr);
+    align-items:center;
+    gap:80px;
+
+    padding:135px 0 100px;
+}
+
+.hero-copy{
+    text-align:left;
+}
+
+.eyebrow{
+    display:flex;
+    align-items:center;
+    gap:16px;
+
+    margin-bottom:25px;
+
+    font-size:13px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+
+    color:var(--cream-soft);
+}
+
+.eyebrow::before{
+    content:"";
+
+    width:42px;
+    height:1px;
+
+    background:var(--cream-soft);
+    opacity:.7;
+}
+
+.logo{
+    margin-left:-5px;
+    margin-bottom:30px;
+
+    font-family:'Parisienne',cursive;
+    font-size:clamp(94px, 12vw, 155px);
+    font-weight:400;
+    line-height:.9;
+}
+
+.hero-title{
+    max-width:700px;
+
+    margin-bottom:28px;
+
+    font-size:clamp(40px, 5vw, 66px);
+    font-weight:300;
+    line-height:1.1;
+    letter-spacing:-2.5px;
+}
+
+.hero-title strong{
+    font-weight:600;
+}
+
+.hero-description{
+    max-width:650px;
+
+    font-size:19px;
+    line-height:1.8;
+
+    color:rgba(233,223,211,.74);
+}
+
+.hero-actions{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+
     margin-top:40px;
 }
 
-.value{
-    border:1px solid rgba(75,53,40,.35);
-    padding:28px 20px;
-    font-size:17px;
+/* ---------------------------------
+   HERO VISUAL
+--------------------------------- */
+
+.identity-card{
+    position:relative;
+
+    min-height:570px;
+
+    overflow:hidden;
+
+    padding:42px;
+
+    border:1px solid var(--border);
+    border-radius:42px;
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(233,223,211,.15),
+            transparent 40%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.09),
+            rgba(255,255,255,.025)
+        );
+
+    box-shadow:var(--shadow);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    display:flex;
+    flex-direction:column;
+}
+
+.identity-card::before{
+    content:"V";
+
+    position:absolute;
+    right:-30px;
+    bottom:-90px;
+
+    font-family:'Parisienne',cursive;
+    font-size:330px;
+    line-height:1;
+
+    color:rgba(233,223,211,.05);
+}
+
+.identity-top{
+    position:relative;
+    z-index:1;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+}
+
+.identity-label{
+    font-size:11px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.5);
+}
+
+.identity-status{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:9px 13px;
+
+    border:1px solid rgba(233,223,211,.2);
+    border-radius:30px;
+
+    font-size:10px;
     letter-spacing:2px;
     text-transform:uppercase;
 }
 
-/* CURRENT PROJECT */
+.identity-status::before{
+    content:"";
 
-.project-name{
-    font-size:25px;
-    font-weight:600;
-    letter-spacing:5px;
-    margin-top:35px;
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+    background:#D6B493;
 }
 
-.project-description{
-    margin-top:25px;
+.identity-statement{
+    position:relative;
+    z-index:1;
+
+    margin:auto 0;
+
+    font-size:clamp(35px, 4.2vw, 57px);
+    font-weight:300;
+    line-height:1.18;
+    letter-spacing:-2px;
 }
 
-.project-status{
-    margin-top:30px;
-    font-size:17px;
+.identity-statement span{
+    color:rgba(233,223,211,.48);
+}
+
+.identity-bottom{
+    position:relative;
+    z-index:1;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+.identity-detail{
+    padding:20px;
+
+    border:1px solid rgba(233,223,211,.14);
+    border-radius:20px;
+
+    background:rgba(31,20,15,.2);
+}
+
+.detail-label{
+    margin-bottom:8px;
+
+    font-size:9px;
     letter-spacing:2px;
     text-transform:uppercase;
+
+    color:rgba(233,223,211,.43);
 }
 
-.release-label{
-    margin-top:30px;
-    font-size:17px;
+.detail-value{
+    font-size:14px;
+    font-weight:500;
 }
 
-.release-date{
-    margin-top:8px;
-    font-size:28px;
+/* ---------------------------------
+   SECTIONS
+--------------------------------- */
+
+.section{
+    position:relative;
+    padding:115px 0;
+}
+
+.section-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:35px;
+
+    margin-bottom:50px;
+}
+
+.section-number{
+    margin-bottom:13px;
+
+    font-size:12px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.48);
+}
+
+.section-title{
+    font-size:clamp(35px, 5vw, 58px);
+    font-weight:300;
+    line-height:1.12;
+    letter-spacing:-2px;
+}
+
+.section-description{
+    max-width:430px;
+
+    font-size:16px;
+    line-height:1.75;
+
+    color:rgba(233,223,211,.65);
+}
+
+/* ---------------------------------
+   OUR STORY
+--------------------------------- */
+
+.story-grid{
+    display:grid;
+    grid-template-columns:.9fr 1.1fr;
+    gap:24px;
+}
+
+.story-card{
+    min-height:390px;
+    padding:48px;
+
+    border:1px solid var(--border);
+    border-radius:32px;
+
+    background:rgba(255,255,255,.04);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.story-card.featured{
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(233,223,211,.12),
+            transparent 38%
+        ),
+        rgba(255,255,255,.05);
+}
+
+.card-label{
+    font-size:11px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.47);
+}
+
+.story-large-text{
+    max-width:560px;
+
+    font-size:clamp(29px, 3.5vw, 45px);
+    font-weight:300;
+    line-height:1.3;
+    letter-spacing:-1.5px;
+}
+
+.story-text{
+    max-width:680px;
+
+    font-size:18px;
+    line-height:1.85;
+
+    color:rgba(233,223,211,.7);
+}
+
+/* ---------------------------------
+   PROCESS
+--------------------------------- */
+
+.process-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+
+    overflow:hidden;
+
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+}
+
+.process-step{
+    min-height:330px;
+    padding:42px 30px;
+
+    transition:background .3s;
+}
+
+.process-step:not(:last-child){
+    border-right:1px solid var(--border);
+}
+
+.process-step:hover{
+    background:rgba(255,255,255,.045);
+}
+
+.process-number{
+    margin-bottom:75px;
+
+    font-size:11px;
+    letter-spacing:3px;
+
+    color:rgba(233,223,211,.43);
+}
+
+.process-title{
+    margin-bottom:16px;
+
+    font-size:23px;
+    font-weight:500;
+}
+
+.process-text{
+    font-size:15px;
+    line-height:1.75;
+
+    color:rgba(233,223,211,.6);
+}
+
+/* ---------------------------------
+   PRINCIPLES
+--------------------------------- */
+
+.principles-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:20px;
+}
+
+.principle-card{
+    min-height:310px;
+    padding:38px;
+
+    border:1px solid var(--border);
+    border-radius:28px;
+
+    background:rgba(255,255,255,.035);
+
+    transition:
+        transform .3s,
+        background .3s,
+        border-color .3s;
+}
+
+.principle-card:hover{
+    transform:translateY(-7px);
+
+    background:rgba(255,255,255,.065);
+    border-color:rgba(233,223,211,.4);
+}
+
+.principle-icon{
+    width:54px;
+    height:54px;
+
+    margin-bottom:72px;
+
+    border:1px solid rgba(233,223,211,.2);
+    border-radius:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:18px;
+    font-weight:500;
+}
+
+.principle-title{
+    margin-bottom:15px;
+
+    font-size:23px;
+    font-weight:500;
+}
+
+.principle-text{
+    font-size:15px;
+    line-height:1.75;
+
+    color:rgba(233,223,211,.6);
+}
+
+/* ---------------------------------
+   CURRENT PROJECT
+--------------------------------- */
+
+.project-panel{
+    position:relative;
+
+    overflow:hidden;
+
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:55px;
+
+    padding:70px;
+
+    border:1px solid var(--border);
+    border-radius:40px;
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(233,223,211,.12),
+            transparent 36%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.085),
+            rgba(255,255,255,.025)
+        );
+
+    box-shadow:var(--shadow);
+}
+
+.project-panel::before{
+    content:"N";
+
+    position:absolute;
+    right:-20px;
+    bottom:-120px;
+
+    font-family:'Parisienne',cursive;
+    font-size:360px;
+    line-height:1;
+
+    color:rgba(233,223,211,.035);
+}
+
+.project-copy,
+.project-side{
+    position:relative;
+    z-index:1;
+}
+
+.project-eyebrow{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    margin-bottom:22px;
+
+    font-size:12px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.58);
+}
+
+.project-eyebrow::before{
+    content:"";
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+    background:#D6B493;
+}
+
+.project-title{
+    margin-bottom:25px;
+
+    font-size:clamp(42px, 5vw, 66px);
+    font-weight:500;
+    letter-spacing:-2px;
+}
+
+.project-copy p{
+    max-width:620px;
+
+    font-size:18px;
+    line-height:1.85;
+
+    color:rgba(233,223,211,.7);
+}
+
+.project-meta{
+    display:grid;
+    gap:14px;
+}
+
+.meta-card{
+    min-height:88px;
+    padding:21px 23px;
+
+    border:1px solid rgba(233,223,211,.14);
+    border-radius:21px;
+
+    background:rgba(31,20,15,.2);
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.meta-label{
+    font-size:10px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.45);
+}
+
+.meta-value{
+    font-size:15px;
     font-weight:600;
-    letter-spacing:5px;
+    letter-spacing:1px;
+    text-align:right;
 }
 
-/* FOOTER */
+.project-progress{
+    margin-top:18px;
+    padding:25px;
+
+    border:1px solid rgba(233,223,211,.14);
+    border-radius:22px;
+
+    background:rgba(31,20,15,.16);
+}
+
+.progress-label{
+    margin-bottom:20px;
+
+    font-size:10px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.45);
+}
+
+.progress-track{
+    position:relative;
+
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+}
+
+.progress-track::before{
+    content:"";
+
+    position:absolute;
+    top:6px;
+    left:7%;
+    right:7%;
+
+    height:1px;
+
+    background:rgba(233,223,211,.18);
+}
+
+.progress-track::after{
+    content:"";
+
+    position:absolute;
+    top:6px;
+    left:7%;
+
+    width:58%;
+    height:1px;
+
+    background:var(--cream-soft);
+}
+
+.progress-stage{
+    position:relative;
+    z-index:1;
+
+    text-align:center;
+
+    font-size:9px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.4);
+}
+
+.progress-dot{
+    width:13px;
+    height:13px;
+
+    margin:0 auto 11px;
+
+    border:2px solid var(--brown-dark);
+    border-radius:50%;
+
+    background:rgba(233,223,211,.28);
+}
+
+.progress-stage.complete .progress-dot{
+    background:var(--cream);
+}
+
+.progress-stage.current .progress-dot{
+    background:#D6B493;
+
+    box-shadow:0 0 0 7px rgba(214,180,147,.08);
+}
+
+/* ---------------------------------
+   FUTURE
+--------------------------------- */
+
+.future-card{
+    position:relative;
+
+    overflow:hidden;
+
+    padding:90px 55px;
+
+    border:1px solid var(--border);
+    border-radius:42px;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(233,223,211,.14),
+            transparent 48%
+        ),
+        rgba(255,255,255,.045);
+
+    text-align:center;
+}
+
+.future-card::before{
+    content:"Velita";
+
+    position:absolute;
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-48%);
+
+    font-family:'Parisienne',cursive;
+    font-size:230px;
+    line-height:1;
+
+    color:rgba(233,223,211,.025);
+    white-space:nowrap;
+}
+
+.future-content{
+    position:relative;
+    z-index:1;
+}
+
+.future-title{
+    max-width:800px;
+
+    margin:0 auto 22px;
+
+    font-size:clamp(37px, 5vw, 60px);
+    font-weight:300;
+    line-height:1.15;
+    letter-spacing:-2px;
+}
+
+.future-text{
+    max-width:650px;
+
+    margin:0 auto;
+
+    font-size:17px;
+    line-height:1.8;
+
+    color:rgba(233,223,211,.65);
+}
+
+.future-actions{
+    display:flex;
+    justify-content:center;
+    gap:16px;
+    flex-wrap:wrap;
+
+    margin-top:38px;
+}
+
+/* ---------------------------------
+   FOOTER
+--------------------------------- */
 
 .footer{
-    margin-top:75px;
-    font-size:15px;
-    opacity:.6;
+    padding:55px 0 45px;
+
+    border-top:1px solid rgba(233,223,211,.13);
 }
 
-/* PHONE SIZE */
+.footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:35px;
+}
 
-@media(max-width:600px){
+.footer-brand{
+    text-align:left;
+}
 
-    body{
-        padding:80px 20px 30px;
-        align-items:flex-start;
+.footer-logo{
+    font-family:'Parisienne',cursive;
+    font-size:46px;
+    line-height:1;
+}
+
+.footer-tagline{
+    margin-top:7px;
+
+    font-size:11px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.42);
+}
+
+.footer-links{
+    display:flex;
+    align-items:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.footer-links a{
+    color:rgba(233,223,211,.65);
+    text-decoration:none;
+
+    font-size:13px;
+
+    transition:color .2s;
+}
+
+.footer-links a:hover{
+    color:var(--cream);
+}
+
+.copyright{
+    margin-top:35px;
+
+    text-align:center;
+
+    font-size:12px;
+
+    color:rgba(233,223,211,.38);
+}
+
+/* ---------------------------------
+   REVEAL
+--------------------------------- */
+
+.reveal{
+    opacity:0;
+    transform:translateY(30px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* ---------------------------------
+   TABLET
+--------------------------------- */
+
+@media(max-width:960px){
+
+    .content{
+        width:min(100% - 40px, 760px);
     }
 
-    .container{
-        padding:20px 10px;
-    }
-
-    h1{
-        font-size:80px;
-    }
-
-    .subtitle{
-        font-size:14px;
-        letter-spacing:4px;
-        margin-bottom:40px;
-    }
-
-    h2{
-        font-size:28px;
-        letter-spacing:4px;
-        line-height:1.4;
-    }
-
-    p{
-        font-size:17px;
-    }
-
-    .section-line{
-        margin:60px auto 55px;
-    }
-
-    .philosophy-heading{
-        font-size:21px;
-    }
-
-    .values{
+    .hero{
         grid-template-columns:1fr;
-        gap:15px;
+        gap:45px;
+
+        padding-top:130px;
     }
 
-    .value{
-        padding:22px 15px;
-        font-size:15px;
+    .hero-copy{
+        text-align:center;
     }
 
-    .project-name{
-        font-size:20px;
-        letter-spacing:3px;
+    .eyebrow{
+        justify-content:center;
     }
 
-    .release-date{
-        font-size:24px;
-        letter-spacing:4px;
+    .hero-title,
+    .hero-description{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .hero-actions{
+        justify-content:center;
+    }
+
+    .identity-card{
+        min-height:500px;
+    }
+
+    .section-heading{
+        display:block;
+        text-align:center;
+    }
+
+    .section-description{
+        margin:22px auto 0;
+    }
+
+    .story-grid,
+    .project-panel{
+        grid-template-columns:1fr;
+    }
+
+    .process-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .process-step:nth-child(2){
+        border-right:none;
+    }
+
+    .process-step:nth-child(1),
+    .process-step:nth-child(2){
+        border-bottom:1px solid var(--border);
+    }
+
+    .principles-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+/* ---------------------------------
+   MOBILE
+--------------------------------- */
+
+@media(max-width:620px){
+
+    .content{
+        width:calc(100% - 30px);
     }
 
     .menu-button{
-        top:20px;
-        right:20px;
+        top:18px;
+        right:18px;
+
+        width:48px;
+        height:48px;
+    }
+
+    .menu{
+        padding:105px 38px 40px;
+    }
+
+    .hero{
+        min-height:auto;
+
+        padding:110px 0 70px;
+    }
+
+    .logo{
+        font-size:88px;
+    }
+
+    .hero-title{
+        font-size:39px;
+        letter-spacing:-1.5px;
+    }
+
+    .hero-description{
+        font-size:16px;
+    }
+
+    .hero-actions,
+    .future-actions{
+        flex-direction:column;
+    }
+
+    .primary-button,
+    .secondary-button{
+        width:100%;
+    }
+
+    .identity-card{
+        min-height:470px;
+        padding:28px;
+
+        border-radius:30px;
+    }
+
+    .identity-bottom{
+        grid-template-columns:1fr;
+    }
+
+    .identity-statement{
+        font-size:37px;
+    }
+
+    .section{
+        padding:80px 0;
+    }
+
+    .section-title{
+        font-size:39px;
+        letter-spacing:-1.5px;
+    }
+
+    .story-card{
+        min-height:330px;
+        padding:32px 27px;
+
+        border-radius:26px;
+    }
+
+    .story-text{
+        font-size:16px;
+    }
+
+    .process-grid{
+        grid-template-columns:1fr;
+    }
+
+    .process-step{
+        min-height:auto;
+        padding:35px 27px;
+    }
+
+    .process-step:not(:last-child){
+        border-right:none;
+        border-bottom:1px solid var(--border);
+    }
+
+    .process-number{
+        margin-bottom:35px;
+    }
+
+    .principle-card{
+        min-height:270px;
+        padding:31px 27px;
+    }
+
+    .principle-icon{
+        margin-bottom:55px;
+    }
+
+    .project-panel{
+        padding:42px 24px;
+
+        border-radius:30px;
+    }
+
+    .project-title{
+        font-size:44px;
+    }
+
+    .project-copy p{
+        font-size:16px;
+    }
+
+    .meta-card{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .meta-value{
+        text-align:left;
+    }
+
+    .progress-track{
+        grid-template-columns:1fr;
+        gap:20px;
+    }
+
+    .progress-track::before,
+    .progress-track::after{
+        top:6px;
+        bottom:6px;
+        left:6px;
+
+        width:1px;
+        height:auto;
+        right:auto;
+    }
+
+    .progress-track::after{
+        height:62%;
+    }
+
+    .progress-stage{
+        min-height:30px;
+
+        display:grid;
+        grid-template-columns:13px 1fr;
+        align-items:center;
+        gap:14px;
+
+        text-align:left;
+    }
+
+    .progress-dot{
+        margin:0;
+    }
+
+    .future-card{
+        padding:70px 24px;
+
+        border-radius:30px;
+    }
+
+    .future-title{
+        font-size:39px;
+    }
+
+    .footer-inner{
+        align-items:center;
+        flex-direction:column;
+
+        text-align:center;
+    }
+
+    .footer-brand{
+        text-align:center;
+    }
+
+    .footer-links{
+        justify-content:center;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+
+    html{
+        scroll-behavior:auto;
+    }
+
+    *,
+    *::before,
+    *::after{
+        animation:none !important;
+        transition:none !important;
+    }
+
+    .reveal{
+        opacity:1;
+        transform:none;
     }
 }
 
 </style>
-
 </head>
 
 <body>
 
-<button class="menu-button" id="menuButton" aria-label="Open menu">
+<div class="background-shapes" aria-hidden="true">
+    <div class="blur-shape one"></div>
+    <div class="blur-shape two"></div>
+    <div class="blur-shape three"></div>
+</div>
+
+<button
+    class="menu-button"
+    id="menuButton"
+    aria-label="Open menu"
+    aria-expanded="false"
+>
     <span></span>
     <span></span>
     <span></span>
@@ -340,107 +1562,620 @@ p{
 
 <div class="menu-overlay" id="menuOverlay"></div>
 
-<nav class="menu" id="menu">
-    <a href="index.html">Home</a>
-    <a href="about.html" class="current">About Us</a>
-    <a href="contact.html">Contact</a>
+<nav class="menu" id="menu" aria-label="Main navigation">
+
+    <div class="menu-label">
+        Navigation
+    </div>
+
+    <a href="index.html">
+        Home
+    </a>
+
+    <a href="about.html" class="current">
+        About Us
+    </a>
+
+    <a href="contact.html">
+        Contact
+    </a>
+
 </nav>
 
-<div class="container">
+<div class="page">
 
-<h1>Velita</h1>
+    <!-- HERO -->
 
-<div class="subtitle">ABOUT US</div>
+    <header class="hero content">
 
-<div class="line"></div>
+        <div class="hero-copy">
 
-<p class="about-text">
-Velita develops beautifully designed mobile applications
-that simplify everyday life.
-</p>
+            <div class="eyebrow">
+                About Velita
+            </div>
 
-<p>
-We believe great software should be intuitive, elegant
-and effortless to use. Every application is thoughtfully
-crafted with simplicity, quality and attention to detail
-at its core.
-</p>
+            <div class="logo">
+                Velita
+            </div>
 
-<div class="section-line"></div>
+            <h1 class="hero-title">
+                Creating technology that feels
+                <strong>effortless.</strong>
+            </h1>
 
-<h2>OUR PHILOSOPHY</h2>
+            <p class="hero-description">
+                Velita is an independent mobile app studio creating
+                thoughtful digital products designed to make everyday
+                life simpler.
+            </p>
 
-<div class="philosophy-heading">
-Technology should feel effortless.
-</div>
+            <div class="hero-actions">
 
-<p class="philosophy-text">
-We believe the best software is intuitive, elegant and
-purposeful. Every application is thoughtfully designed
-to solve real problems while remaining simple and
-enjoyable to use.
-</p>
+                <a
+                    class="primary-button"
+                    href="#our-story"
+                >
+                    Our Story
+                    <span>↓</span>
+                </a>
 
-<div class="section-line"></div>
+                <a
+                    class="secondary-button"
+                    href="#current-projects"
+                >
+                    Project Nova
+                </a>
 
-<h2>WHY VELITA</h2>
+            </div>
 
-<div class="values">
+        </div>
 
-    <div class="value">
-        Thoughtfully Designed
-    </div>
+        <div class="identity-card">
 
-    <div class="value">
-        User-First Experiences
-    </div>
+            <div class="identity-top">
 
-    <div class="value">
-        Privacy Conscious
-    </div>
+                <div class="identity-label">
+                    Independent App Studio
+                </div>
 
-    <div class="value">
-        Built With Quality
-    </div>
+                <div class="identity-status">
+                    Building
+                </div>
 
-    <div class="value">
-        Simple By Design
-    </div>
+            </div>
 
-    <div class="value">
-        Made For Everyday Life
-    </div>
+            <div class="identity-statement">
+                Useful technology should feel
+                <span>simple, intuitive and considered.</span>
+            </div>
 
-</div>
+            <div class="identity-bottom">
 
-<div class="section-line"></div>
+                <div class="identity-detail">
 
-<h2 id="current-projects">CURRENT PROJECTS</h2>
+                    <div class="detail-label">
+                        Focus
+                    </div>
 
-<div class="project-name">
-PROJECT NOVA
-</div>
+                    <div class="detail-value">
+                        Consumer Mobile Apps
+                    </div>
 
-<p class="project-description">
-A new mobile application designed to make everyday life
-a little simpler.
-</p>
+                </div>
 
-<div class="project-status">
-Currently in development
-</div>
+                <div class="identity-detail">
 
-<div class="release-label">
-Target Release
-</div>
+                    <div class="detail-label">
+                        First Project
+                    </div>
 
-<div class="release-date">
-Q4 2026
-</div>
+                    <div class="detail-value">
+                        Project Nova
+                    </div>
 
-<div class="footer">
-© 2026 Velita. All rights reserved.
-</div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <main>
+
+        <!-- OUR STORY -->
+
+        <section
+            class="section content reveal"
+            id="our-story"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="section-number">
+                        01 / Our Story
+                    </div>
+
+                    <h2 class="section-title">
+                        Built around a simple idea.
+                    </h2>
+
+                </div>
+
+                <p class="section-description">
+                    Technology should make everyday tasks easier,
+                    not create more complexity.
+                </p>
+
+            </div>
+
+            <div class="story-grid">
+
+                <article class="story-card">
+
+                    <div class="card-label">
+                        The Beginning
+                    </div>
+
+                    <div class="story-large-text">
+                        Velita began with the ambition to create
+                        digital products people genuinely enjoy using.
+                    </div>
+
+                </article>
+
+                <article class="story-card featured">
+
+                    <div class="card-label">
+                        Our Direction
+                    </div>
+
+                    <p class="story-text">
+                        Velita was created to develop mobile applications
+                        that solve real everyday problems without unnecessary
+                        complexity. Each product is approached with a focus
+                        on clear design, practical functionality and an
+                        experience that feels natural from the first tap.
+                    </p>
+
+                    <p class="story-text">
+                        Our first consumer application, Project Nova,
+                        is currently in active development.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- PROCESS -->
+
+        <section class="section content reveal">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="section-number">
+                        02 / How We Build
+                    </div>
+
+                    <h2 class="section-title">
+                        From problem to product.
+                    </h2>
+
+                </div>
+
+                <p class="section-description">
+                    Every Velita application begins with a real need
+                    and develops through a clear, focused process.
+                </p>
+
+            </div>
+
+            <div class="process-grid">
+
+                <article class="process-step">
+
+                    <div class="process-number">
+                        01
+                    </div>
+
+                    <h3 class="process-title">
+                        Identify
+                    </h3>
+
+                    <p class="process-text">
+                        Find an everyday problem that technology
+                        can meaningfully improve.
+                    </p>
+
+                </article>
+
+                <article class="process-step">
+
+                    <div class="process-number">
+                        02
+                    </div>
+
+                    <h3 class="process-title">
+                        Simplify
+                    </h3>
+
+                    <p class="process-text">
+                        Remove unnecessary steps and focus on
+                        what users genuinely need.
+                    </p>
+
+                </article>
+
+                <article class="process-step">
+
+                    <div class="process-number">
+                        03
+                    </div>
+
+                    <h3 class="process-title">
+                        Design
+                    </h3>
+
+                    <p class="process-text">
+                        Shape an experience that feels intuitive,
+                        elegant and carefully considered.
+                    </p>
+
+                </article>
+
+                <article class="process-step">
+
+                    <div class="process-number">
+                        04
+                    </div>
+
+                    <h3 class="process-title">
+                        Develop
+                    </h3>
+
+                    <p class="process-text">
+                        Build, test and refine the product before
+                        bringing it to users.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- PRINCIPLES -->
+
+        <section class="section content reveal">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="section-number">
+                        03 / Our Principles
+                    </div>
+
+                    <h2 class="section-title">
+                        Thoughtful by design.
+                    </h2>
+
+                </div>
+
+                <p class="section-description">
+                    The principles guiding every product developed
+                    under the Velita name.
+                </p>
+
+            </div>
+
+            <div class="principles-grid">
+
+                <article class="principle-card">
+
+                    <div class="principle-icon">
+                        01
+                    </div>
+
+                    <h3 class="principle-title">
+                        Simplicity
+                    </h3>
+
+                    <p class="principle-text">
+                        Clear interfaces and focused functionality
+                        without unnecessary distractions.
+                    </p>
+
+                </article>
+
+                <article class="principle-card">
+
+                    <div class="principle-icon">
+                        02
+                    </div>
+
+                    <h3 class="principle-title">
+                        Everyday Utility
+                    </h3>
+
+                    <p class="principle-text">
+                        Products designed around real routines,
+                        needs and everyday experiences.
+                    </p>
+
+                </article>
+
+                <article class="principle-card">
+
+                    <div class="principle-icon">
+                        03
+                    </div>
+
+                    <h3 class="principle-title">
+                        Considered Quality
+                    </h3>
+
+                    <p class="principle-text">
+                        Careful attention to detail across design,
+                        functionality and the overall experience.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- CURRENT PROJECT -->
+
+        <section
+            class="section content reveal"
+            id="current-projects"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="section-number">
+                        04 / Current Project
+                    </div>
+
+                    <h2 class="section-title">
+                        Meet Project Nova.
+                    </h2>
+
+                </div>
+
+                <p class="section-description">
+                    The first consumer mobile application currently
+                    being developed by Velita.
+                </p>
+
+            </div>
+
+            <div class="project-panel">
+
+                <div class="project-copy">
+
+                    <div class="project-eyebrow">
+                        Our First Application
+                    </div>
+
+                    <h3 class="project-title">
+                        Project Nova
+                    </h3>
+
+                    <p>
+                        Project Nova is a new mobile application designed
+                        to make everyday life a little simpler. Its design,
+                        core functionality and overall experience are
+                        currently being developed and refined.
+                    </p>
+
+                    <p style="margin-top:20px;">
+                        Further details will be revealed as development
+                        progresses.
+                    </p>
+
+                </div>
+
+                <div class="project-side">
+
+                    <div class="project-meta">
+
+                        <div class="meta-card">
+
+                            <div class="meta-label">
+                                Status
+                            </div>
+
+                            <div class="meta-value">
+                                In Development
+                            </div>
+
+                        </div>
+
+                        <div class="meta-card">
+
+                            <div class="meta-label">
+                                Target Release
+                            </div>
+
+                            <div class="meta-value">
+                                Q4 2026
+                            </div>
+
+                        </div>
+
+                        <div class="meta-card">
+
+                            <div class="meta-label">
+                                Platform
+                            </div>
+
+                            <div class="meta-value">
+                                Mobile
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="project-progress">
+
+                        <div class="progress-label">
+                            Development Journey
+                        </div>
+
+                        <div class="progress-track">
+
+                            <div class="progress-stage complete">
+
+                                <div class="progress-dot"></div>
+                                Concept
+
+                            </div>
+
+                            <div class="progress-stage complete">
+
+                                <div class="progress-dot"></div>
+                                Design
+
+                            </div>
+
+                            <div class="progress-stage current">
+
+                                <div class="progress-dot"></div>
+                                Development
+
+                            </div>
+
+                            <div class="progress-stage">
+
+                                <div class="progress-dot"></div>
+                                Launch
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- FUTURE -->
+
+        <section class="section content reveal">
+
+            <div class="future-card">
+
+                <div class="future-content">
+
+                    <h2 class="future-title">
+                        Project Nova is only the beginning.
+                    </h2>
+
+                    <p class="future-text">
+                        Velita aims to create a growing collection of
+                        focused, beautifully designed applications that
+                        make everyday life simpler.
+                    </p>
+
+                    <div class="future-actions">
+
+                        <a
+                            class="primary-button"
+                            href="contact.html"
+                        >
+                            Contact Velita
+                            <span>→</span>
+                        </a>
+
+                        <a
+                            class="secondary-button"
+                            href="index.html"
+                        >
+                            Return Home
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="content">
+
+            <div class="footer-inner">
+
+                <div class="footer-brand">
+
+                    <div class="footer-logo">
+                        Velita
+                    </div>
+
+                    <div class="footer-tagline">
+                        Mobile App Development
+                    </div>
+
+                </div>
+
+                <div class="footer-links">
+
+                    <a href="index.html">
+                        Home
+                    </a>
+
+                    <a href="about.html">
+                        About Us
+                    </a>
+
+                    <a href="contact.html">
+                        Contact
+                    </a>
+
+                    <a href="mailto:hello@velita.co">
+                        hello@velita.co
+                    </a>
+
+                    <a
+                        href="https://instagram.com/velita_apps"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Instagram
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="copyright">
+                © 2026 Velita. All rights reserved.
+            </div>
+
+        </div>
+
+    </footer>
 
 </div>
 
@@ -450,27 +2185,95 @@ const menuButton = document.getElementById("menuButton");
 const menu = document.getElementById("menu");
 const menuOverlay = document.getElementById("menuOverlay");
 
-function toggleMenu(){
-    menu.classList.toggle("active");
-    menuOverlay.classList.toggle("active");
+function openMenu(){
+
+    menu.classList.add("active");
+    menuOverlay.classList.add("active");
+    menuButton.classList.add("active");
+
+    menuButton.setAttribute("aria-expanded", "true");
+    menuButton.setAttribute("aria-label", "Close menu");
+
 }
 
 function closeMenu(){
+
     menu.classList.remove("active");
     menuOverlay.classList.remove("active");
+    menuButton.classList.remove("active");
+
+    menuButton.setAttribute("aria-expanded", "false");
+    menuButton.setAttribute("aria-label", "Open menu");
+
+}
+
+function toggleMenu(){
+
+    if(menu.classList.contains("active")){
+        closeMenu();
+    }else{
+        openMenu();
+    }
+
 }
 
 menuButton.addEventListener("click", toggleMenu);
 menuOverlay.addEventListener("click", closeMenu);
 
 document.addEventListener("keydown", function(event){
+
     if(event.key === "Escape"){
         closeMenu();
     }
+
 });
+
+menu.querySelectorAll("a").forEach(function(link){
+
+    link.addEventListener("click", closeMenu);
+
+});
+
+const revealElements = document.querySelectorAll(".reveal");
+
+if("IntersectionObserver" in window){
+
+    const revealObserver = new IntersectionObserver(
+
+        function(entries, observer){
+
+            entries.forEach(function(entry){
+
+                if(entry.isIntersecting){
+
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold:0.12
+        }
+
+    );
+
+    revealElements.forEach(function(element){
+        revealObserver.observe(element);
+    });
+
+}else{
+
+    revealElements.forEach(function(element){
+        element.classList.add("visible");
+    });
+
+}
 
 </script>
 
 </body>
-
 </html>
