@@ -1,43 +1,121 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Velita</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Parisienne&display=swap" rel="stylesheet">
+
 <style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
 body{
-    background:#E9DFD3;
-    color:#4B3528;
-    font-family:Arial,sans-serif;
+    background:#4B3528;
+    color:#E9DFD3;
+    font-family:'Manrope',sans-serif;
+
     display:flex;
     justify-content:center;
     align-items:center;
+
     height:100vh;
-    margin:0;
     text-align:center;
 }
+
+.container{
+    max-width:700px;
+    padding:30px;
+}
+
 h1{
-    font-size:60px;
+    font-family:'Parisienne',cursive;
+    font-size:110px;
+    font-weight:400;
+    margin-bottom:15px;
 }
-a{
-    color:#4B3528;
+
+.subtitle{
+    letter-spacing:6px;
+    font-size:18px;
+    margin-bottom:50px;
 }
+
+.line{
+    width:70px;
+    height:1px;
+    background:#E9DFD3;
+    margin:0 auto 50px;
+    opacity:.8;
+}
+
+h2{
+    font-size:44px;
+    font-weight:300;
+    letter-spacing:8px;
+    margin-bottom:30px;
+}
+
+p{
+    font-size:20px;
+    line-height:1.8;
+    opacity:.9;
+}
+
+.instagram{
+    margin-top:60px;
+}
+
+.instagram a{
+    color:#E9DFD3;
+    text-decoration:none;
+    font-size:20px;
+    transition:.2s;
+}
+
+.instagram a:hover{
+    opacity:.7;
+}
+
 </style>
+
 </head>
 
 <body>
 
-<div>
+<div class="container">
 
 <h1>Velita</h1>
 
-<p>App Development</p>
+<div class="subtitle">APP DEVELOPMENT</div>
 
-<h2>Coming Soon.</h2>
+<div class="line"></div>
 
-<p>Creating beautifully designed apps for everyday life.</p>
+<h2>COMING SOON</h2>
 
-<p><a href="https://instagram.com/velita_apps">Instagram</a></p>
+<p>
+Creating beautifully designed apps<br>
+for everyday life.
+</p>
+
+<div class="instagram">
+<a href="https://instagram.com/velita_apps">
+@velita_apps
+</a>
+</div>
 
 </div>
 
 </body>
+
 </html>
