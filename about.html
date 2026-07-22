@@ -31,7 +31,7 @@ body{
 
     min-height:100vh;
     text-align:center;
-    padding:30px;
+    padding:80px 30px 40px;
 }
 
 /* MENU BUTTON */
@@ -132,6 +132,7 @@ body{
 /* PAGE CONTENT */
 
 .container{
+    width:100%;
     max-width:700px;
     padding:30px;
 }
@@ -161,7 +162,7 @@ h2{
     font-size:44px;
     font-weight:300;
     letter-spacing:8px;
-    margin-bottom:30px;
+    margin-bottom:35px;
 }
 
 p{
@@ -170,16 +171,61 @@ p{
     opacity:.9;
 }
 
+.about-text{
+    margin-bottom:30px;
+}
+
+.section-line{
+    width:70px;
+    height:1px;
+    background:#4B3528;
+    margin:70px auto 60px;
+    opacity:.8;
+}
+
+.project-name{
+    font-size:25px;
+    font-weight:600;
+    letter-spacing:5px;
+    margin-top:35px;
+}
+
+.project-description{
+    margin-top:25px;
+}
+
+.project-status{
+    margin-top:25px;
+    font-size:17px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.release-label{
+    margin-top:25px;
+    font-size:17px;
+}
+
+.release-date{
+    margin-top:8px;
+    font-size:28px;
+    font-weight:600;
+    letter-spacing:5px;
+}
+
 .footer{
-    margin-top:50px;
+    margin-top:70px;
     font-size:15px;
     opacity:.6;
 }
 
+/* PHONE SIZE */
+
 @media(max-width:600px){
 
     body{
-        padding:20px;
+        padding:80px 20px 30px;
+        align-items:flex-start;
     }
 
     .container{
@@ -203,6 +249,16 @@ p{
 
     p{
         font-size:17px;
+    }
+
+    .project-name{
+        font-size:20px;
+        letter-spacing:3px;
+    }
+
+    .release-date{
+        font-size:24px;
+        letter-spacing:4px;
     }
 
     .menu-button{
@@ -239,11 +295,42 @@ p{
 
 <div class="line"></div>
 
-<h2>COMING SOON</h2>
+<p class="about-text">
+Velita develops beautifully designed mobile applications
+that simplify everyday life.
+</p>
 
 <p>
-We are currently preparing this page.
+We believe great software should be intuitive, elegant,
+and effortless to use. Every application is thoughtfully
+crafted with simplicity, quality, and attention to detail
+at its core.
 </p>
+
+<div class="section-line"></div>
+
+<h2>CURRENT PROJECTS</h2>
+
+<div class="project-name">
+PROJECT NOVA
+</div>
+
+<p class="project-description">
+A new mobile application designed to make everyday life
+a little simpler.
+</p>
+
+<div class="project-status">
+Currently in development
+</div>
+
+<div class="release-label">
+Target Release
+</div>
+
+<div class="release-date">
+Q4 2026
+</div>
 
 <div class="footer">
 © 2026 Velita. All rights reserved.
