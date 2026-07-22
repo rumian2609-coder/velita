@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Velita</title>
+<title>Velita | Mobile App Development</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,6 +20,10 @@
     box-sizing:border-box;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     background:#4B3528;
     color:#E9DFD3;
@@ -27,11 +31,11 @@ body{
 
     display:flex;
     justify-content:center;
-    align-items:center;
+    align-items:flex-start;
 
     min-height:100vh;
     text-align:center;
-    padding:30px;
+    padding:80px 30px 40px;
 }
 
 /* MENU BUTTON */
@@ -133,7 +137,8 @@ body{
 /* MAIN PAGE */
 
 .container{
-    max-width:700px;
+    width:100%;
+    max-width:760px;
     padding:30px;
 }
 
@@ -171,18 +176,147 @@ p{
     opacity:.9;
 }
 
-.contact{
+.section-line{
+    width:70px;
+    height:1px;
+    background:#E9DFD3;
+    margin:75px auto 65px;
+    opacity:.8;
+}
+
+/* PROJECT SPOTLIGHT */
+
+.project-card{
     margin-top:40px;
+    padding:50px 40px;
+
+    border:1px solid rgba(233,223,211,.4);
+
+    transition:transform .3s, border-color .3s;
+}
+
+.project-card:hover{
+    transform:translateY(-4px);
+    border-color:rgba(233,223,211,.8);
+}
+
+.project-label{
+    font-size:14px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    opacity:.7;
+    margin-bottom:25px;
+}
+
+.project-name{
+    font-size:28px;
+    font-weight:600;
+    letter-spacing:5px;
+    margin-bottom:25px;
+}
+
+.project-description{
+    max-width:580px;
+    margin:0 auto;
+}
+
+.project-details{
+    display:flex;
+    justify-content:center;
+    gap:60px;
+
+    margin-top:35px;
+}
+
+.project-detail{
+    min-width:140px;
+}
+
+.detail-label{
+    font-size:13px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    opacity:.65;
+    margin-bottom:10px;
+}
+
+.detail-value{
+    font-size:18px;
+    letter-spacing:2px;
+}
+
+.status-badge{
+    display:inline-block;
+
+    padding:10px 18px;
+    border:1px solid rgba(233,223,211,.5);
+
+    font-size:13px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.project-button{
+    display:inline-block;
+
+    margin-top:40px;
+    padding:15px 28px;
+
+    background:#E9DFD3;
+    color:#4B3528;
+
+    text-decoration:none;
+
+    font-size:15px;
+    font-weight:600;
+    letter-spacing:2px;
+    text-transform:uppercase;
+
+    transition:opacity .2s, transform .2s;
+}
+
+.project-button:hover{
+    opacity:.85;
+    transform:translateY(-2px);
+}
+
+/* LATEST UPDATE */
+
+.update-date{
+    font-size:14px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    opacity:.65;
+    margin-bottom:20px;
+}
+
+.update-title{
+    font-size:24px;
+    font-weight:600;
+    letter-spacing:2px;
+    margin-bottom:20px;
+}
+
+.update-text{
+    max-width:600px;
+    margin:0 auto;
+}
+
+/* CONTACT */
+
+.contact{
+    margin-top:70px;
     font-size:18px;
 }
 
 .contact a{
     color:#E9DFD3;
     text-decoration:none;
+    transition:.2s;
 }
 
 .instagram{
-    margin-top:30px;
+    margin-top:25px;
 }
 
 .instagram a{
@@ -198,7 +332,7 @@ p{
 }
 
 .footer{
-    margin-top:50px;
+    margin-top:55px;
     font-size:15px;
     opacity:.6;
 }
@@ -208,11 +342,11 @@ p{
 @media(max-width:600px){
 
     body{
-        padding:20px;
+        padding:70px 20px 30px;
     }
 
     .container{
-        padding:20px;
+        padding:20px 10px;
     }
 
     h1{
@@ -226,12 +360,41 @@ p{
     }
 
     h2{
-        font-size:30px;
-        letter-spacing:5px;
+        font-size:29px;
+        letter-spacing:4px;
+        line-height:1.4;
     }
 
     p{
         font-size:17px;
+    }
+
+    .section-line{
+        margin:60px auto 55px;
+    }
+
+    .project-card{
+        padding:40px 20px;
+    }
+
+    .project-name{
+        font-size:22px;
+        letter-spacing:3px;
+    }
+
+    .project-details{
+        flex-direction:column;
+        gap:30px;
+    }
+
+    .project-button{
+        width:100%;
+        padding:15px 10px;
+        font-size:13px;
+    }
+
+    .update-title{
+        font-size:21px;
     }
 
     .menu-button{
@@ -260,7 +423,7 @@ p{
     <a href="contact.html">Contact</a>
 </nav>
 
-<div class="container">
+<main class="container">
 
 <h1>Velita</h1>
 
@@ -268,8 +431,8 @@ p{
 
 <div class="line"></div>
 
-<h2></h2>
 <!-- Здрасти Лельо -->
+
 <h2>COMING SOON</h2>
 
 <p>
@@ -277,12 +440,78 @@ Velita develops beautifully designed mobile applications
 that help simplify everyday life.
 </p>
 
+<div class="section-line"></div>
+
+<h2>PROJECT SPOTLIGHT</h2>
+
+<div class="project-card">
+
+    <div class="project-label">
+        Our First Application
+    </div>
+
+    <div class="project-name">
+        PROJECT NOVA
+    </div>
+
+    <p class="project-description">
+        Our first mobile application is currently in development.
+        More details will be revealed as development progresses.
+    </p>
+
+    <div class="project-details">
+
+        <div class="project-detail">
+            <div class="detail-label">Status</div>
+
+            <div class="status-badge">
+                In Development
+            </div>
+        </div>
+
+        <div class="project-detail">
+            <div class="detail-label">Target Release</div>
+
+            <div class="detail-value">
+                Q4 2026
+            </div>
+        </div>
+
+    </div>
+
+    <a class="project-button" href="about.html#current-projects">
+        Discover Project Nova →
+    </a>
+
+</div>
+
+<div class="section-line"></div>
+
+<h2>LATEST UPDATE</h2>
+
+<div class="update-date">
+July 2026
+</div>
+
+<div class="update-title">
+Project Nova is now in active development.
+</div>
+
+<p class="update-text">
+We are currently shaping the design, functionality and
+overall experience of our first application. More information
+will be shared as the project develops.
+</p>
+
 <div class="contact">
-Contact: <a href="mailto:hello@velita.co">hello@velita.co</a>
+Contact:
+<a href="mailto:hello@velita.co">
+hello@velita.co
+</a>
 </div>
 
 <div class="instagram">
-<a href="https://instagram.com/velita_apps">
+<a href="https://instagram.com/velita_apps" target="_blank" rel="noopener noreferrer">
 @velita_apps
 </a>
 </div>
@@ -291,7 +520,7 @@ Contact: <a href="mailto:hello@velita.co">hello@velita.co</a>
 © 2026 Velita. All rights reserved.
 </div>
 
-</div>
+</main>
 
 <script>
 
