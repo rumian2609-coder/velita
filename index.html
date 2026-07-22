@@ -29,9 +29,108 @@ body{
     justify-content:center;
     align-items:center;
 
-    height:100vh;
+    min-height:100vh;
     text-align:center;
+    padding:30px;
 }
+
+/* MENU BUTTON */
+
+.menu-button{
+    position:fixed;
+    top:30px;
+    right:30px;
+    z-index:1001;
+
+    width:45px;
+    height:45px;
+
+    border:none;
+    background:transparent;
+    cursor:pointer;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:6px;
+}
+
+.menu-button span{
+    width:28px;
+    height:2px;
+    background:#E9DFD3;
+    transition:.3s;
+}
+
+/* DARK BACKGROUND BEHIND MENU */
+
+.menu-overlay{
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.35);
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.3s;
+    z-index:999;
+}
+
+.menu-overlay.active{
+    opacity:1;
+    visibility:visible;
+}
+
+/* SLIDE-OUT MENU */
+
+.menu{
+    position:fixed;
+    top:0;
+    right:-350px;
+
+    width:320px;
+    max-width:85%;
+    height:100vh;
+
+    background:#E9DFD3;
+    color:#4B3528;
+
+    padding:110px 45px;
+
+    transition:.35s;
+    z-index:1000;
+
+    text-align:left;
+}
+
+.menu.active{
+    right:0;
+}
+
+.menu a{
+    display:block;
+
+    color:#4B3528;
+    text-decoration:none;
+
+    font-size:24px;
+    font-weight:300;
+
+    margin-bottom:30px;
+    transition:.2s;
+}
+
+.menu a:hover{
+    opacity:.6;
+}
+
+.menu a.current{
+    font-weight:600;
+}
+
+/* MAIN PAGE */
 
 .container{
     max-width:700px;
@@ -104,11 +203,62 @@ p{
     opacity:.6;
 }
 
+/* PHONE SIZE */
+
+@media(max-width:600px){
+
+    body{
+        padding:20px;
+    }
+
+    .container{
+        padding:20px;
+    }
+
+    h1{
+        font-size:80px;
+    }
+
+    .subtitle{
+        font-size:14px;
+        letter-spacing:4px;
+        margin-bottom:40px;
+    }
+
+    h2{
+        font-size:30px;
+        letter-spacing:5px;
+    }
+
+    p{
+        font-size:17px;
+    }
+
+    .menu-button{
+        top:20px;
+        right:20px;
+    }
+}
+
 </style>
 
 </head>
 
 <body>
+
+<button class="menu-button" id="menuButton" aria-label="Open menu">
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<nav class="menu" id="menu">
+    <a href="index.html" class="current">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+</nav>
 
 <div class="container">
 
@@ -140,6 +290,33 @@ Contact: <a href="mailto:hello@velita.co">hello@velita.co</a>
 </div>
 
 </div>
+
+<script>
+
+const menuButton = document.getElementById("menuButton");
+const menu = document.getElementById("menu");
+const menuOverlay = document.getElementById("menuOverlay");
+
+function toggleMenu(){
+    menu.classList.toggle("active");
+    menuOverlay.classList.toggle("active");
+}
+
+function closeMenu(){
+    menu.classList.remove("active");
+    menuOverlay.classList.remove("active");
+}
+
+menuButton.addEventListener("click", toggleMenu);
+menuOverlay.addEventListener("click", closeMenu);
+
+document.addEventListener("keydown", function(event){
+    if(event.key === "Escape"){
+        closeMenu();
+    }
+});
+
+</script>
 
 </body>
 
