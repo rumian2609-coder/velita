@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="robots" content="noindex, nofollow">
+
+<title>Velita Staff Dashboard</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Parisienne&display=swap"
+rel="stylesheet"
+>
+
+<style>
+
+/* ---------------------------------
+   BASE
+--------------------------------- */
+
+:root{
+
+    --brown:#4B3528;
+    --brown-dark:#2E2019;
+    --brown-light:#644A3A;
+
+    --cream:#E9DFD3;
+    --cream-soft:#D9CABC;
+
+    --border:rgba(233,223,211,.17);
+
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    background:#4B3528;
+    min-height:100%;
+}
+
+body{
+
+    min-height:100vh;
+    min-height:100dvh;
+
+    overflow-x:hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 12% 8%,
+            rgba(201,166,137,.16),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 90% 65%,
+            rgba(233,223,211,.07),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            145deg,
+            #51392C 0%,
+            #4B3528 45%,
+            #35241C 100%
+        );
+
+    color:var(--cream);
+
+    font-family:'Manrope',sans-serif;
+}
+
+
+/* ---------------------------------
+   BACKGROUND V
+--------------------------------- */
+
+.background-v{
+
+    position:fixed;
+
+    left:-5vw;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    font-family:'Parisienne',cursive;
+
+    font-size:min(75vw,900px);
+
+    color:rgba(233,223,211,.022);
+
+    pointer-events:none;
+
+    z-index:0;
+
+}
+
+
+/* ---------------------------------
+   APP
+--------------------------------- */
+
+.app{
+
+    position:relative;
+
+    z-index:1;
+
+    display:grid;
+
+    grid-template-columns:260px 1fr;
+
+    min-height:100vh;
+}
+
+
+/* ---------------------------------
+   SIDEBAR
+--------------------------------- */
+
+.sidebar{
+
+    position:fixed;
+
+    width:260px;
+    height:100vh;
+
+    padding:32px 28px;
+
+    border-right:1px solid var(--border);
+
+    background:rgba(38,25,19,.55);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    display:flex;
+    flex-direction:column;
+
+}
+
+.brand{
+
+    margin-bottom:60px;
+
+}
+
+.logo{
+
+    font-family:'Parisienne',cursive;
+
+    font-size:46px;
+
+    line-height:1;
+
+}
+
+.internal{
+
+    margin-top:7px;
+
+    font-size:9px;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.4);
+
+}
+
+
+/* NAV */
+
+.nav{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:7px;
+
+}
+
+.nav-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    min-height:47px;
+
+    padding:0 14px;
+
+    border-radius:13px;
+
+    color:rgba(233,223,211,.55);
+
+    text-decoration:none;
+
+    font-size:13px;
+
+    transition:
+        background .2s,
+        color .2s;
+
+}
+
+.nav-item:hover{
+
+    color:var(--cream);
+
+    background:rgba(233,223,211,.06);
+
+}
+
+.nav-item.active{
+
+    color:var(--cream);
+
+    background:rgba(233,223,211,.09);
+
+    border:1px solid rgba(233,223,211,.09);
+
+}
+
+.nav-icon{
+
+    width:19px;
+
+    text-align:center;
+
+    opacity:.65;
+
+}
+
+
+/* USER */
+
+.sidebar-bottom{
+
+    margin-top:auto;
+
+    padding-top:28px;
+
+    border-top:1px solid rgba(233,223,211,.09);
+
+}
+
+.user-email{
+
+    margin-bottom:14px;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    font-size:11px;
+
+    color:rgba(233,223,211,.47);
+
+}
+
+.sign-out{
+
+    width:100%;
+
+    height:44px;
+
+    border:1px solid rgba(233,223,211,.14);
+
+    border-radius:12px;
+
+    background:transparent;
+
+    color:rgba(233,223,211,.7);
+
+    font-family:'Manrope',sans-serif;
+
+    cursor:pointer;
+
+    transition:
+        background .2s,
+        color .2s;
+
+}
+
+.sign-out:hover{
+
+    background:rgba(233,223,211,.07);
+
+    color:var(--cream);
+
+}
+
+
+/* ---------------------------------
+   MAIN
+--------------------------------- */
+
+.main{
+
+    grid-column:2;
+
+    padding:38px 48px 70px;
+
+}
+
+
+/* ---------------------------------
+   HEADER
+--------------------------------- */
+
+.header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:62px;
+
+}
+
+.header-label{
+
+    margin-bottom:8px;
+
+    font-size:10px;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.42);
+
+}
+
+h1{
+
+    font-size:42px;
+
+    font-weight:300;
+
+    letter-spacing:-2px;
+
+}
+
+.status{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    padding:10px 15px;
+
+    border:1px solid rgba(233,223,211,.13);
+
+    border-radius:30px;
+
+    font-size:10px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.55);
+
+}
+
+.status-dot{
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:#D6B493;
+
+}
+
+
+/* ---------------------------------
+   OVERVIEW
+--------------------------------- */
+
+.section-label{
+
+    margin-bottom:22px;
+
+    font-size:10px;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.4);
+
+}
+
+.overview-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:18px;
+
+    margin-bottom:60px;
+
+}
+
+.card{
+
+    min-height:180px;
+
+    padding:25px;
+
+    border:1px solid var(--border);
+
+    border-radius:22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.015)
+        );
+
+    transition:
+        transform .25s,
+        border-color .25s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-4px);
+
+    border-color:rgba(233,223,211,.32);
+
+}
+
+.card-label{
+
+    margin-bottom:45px;
+
+    font-size:10px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.42);
+
+}
+
+.card-value{
+
+    font-size:27px;
+
+    font-weight:400;
+
+    letter-spacing:-1px;
+
+}
+
+.card-sub{
+
+    margin-top:8px;
+
+    font-size:11px;
+
+    color:rgba(233,223,211,.4);
+
+}
+
+
+/* ---------------------------------
+   PROJECT
+--------------------------------- */
+
+.project-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:grid;
+
+    grid-template-columns:1.1fr .9fr;
+
+    gap:40px;
+
+    padding:40px;
+
+    border:1px solid var(--border);
+
+    border-radius:26px;
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(233,223,211,.10),
+            transparent 40%
+        ),
+        rgba(255,255,255,.035);
+
+}
+
+.project-card::before{
+
+    content:"N";
+
+    position:absolute;
+
+    right:-20px;
+    bottom:-110px;
+
+    font-family:'Parisienne',cursive;
+
+    font-size:300px;
+
+    color:rgba(233,223,211,.025);
+
+}
+
+.project-content,
+.project-meta{
+
+    position:relative;
+
+    z-index:1;
+
+}
+
+.project-eyebrow{
+
+    margin-bottom:13px;
+
+    font-size:10px;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.42);
+
+}
+
+.project-title{
+
+    margin-bottom:17px;
+
+    font-size:38px;
+
+    font-weight:500;
+
+    letter-spacing:-1.5px;
+
+}
+
+.project-text{
+
+    max-width:570px;
+
+    font-size:14px;
+
+    line-height:1.8;
+
+    color:rgba(233,223,211,.58);
+
+}
+
+.project-meta{
+
+    display:grid;
+
+    gap:12px;
+
+}
+
+.meta{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:19px 20px;
+
+    border:1px solid rgba(233,223,211,.11);
+
+    border-radius:17px;
+
+    background:rgba(25,16,12,.18);
+
+}
+
+.meta-label{
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.4);
+
+}
+
+.meta-value{
+
+    font-size:13px;
+
+    font-weight:500;
+
+}
+
+
+/* ---------------------------------
+   LOADING SCREEN
+--------------------------------- */
+
+.auth-loading{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:9999;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    background:#4B3528;
+
+}
+
+.loading-logo{
+
+    font-family:'Parisienne',cursive;
+
+    font-size:65px;
+
+}
+
+.loading-text{
+
+    font-size:9px;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+    color:rgba(233,223,211,.4);
+
+}
+
+
+/* ---------------------------------
+   MOBILE
+--------------------------------- */
+
+.mobile-header{
+
+    display:none;
+
+}
+
+@media(max-width:850px){
+
+    .app{
+
+        display:block;
+
+    }
+
+    .sidebar{
+
+        display:none;
+
+    }
+
+    .main{
+
+        padding:30px 20px 60px;
+
+    }
+
+    .mobile-header{
+
+        display:flex;
+
+        justify-content:space-between;
+
+        align-items:center;
+
+        margin-bottom:45px;
+
+    }
+
+    .mobile-logo{
+
+        font-family:'Parisienne',cursive;
+
+        font-size:37px;
+
+    }
+
+    .mobile-signout{
+
+        border:none;
+
+        background:transparent;
+
+        color:rgba(233,223,211,.55);
+
+        font-family:'Manrope',sans-serif;
+
+        font-size:11px;
+
+        cursor:pointer;
+
+    }
+
+    .header{
+
+        margin-bottom:45px;
+
+    }
+
+    h1{
+
+        font-size:35px;
+
+    }
+
+    .status{
+
+        display:none;
+
+    }
+
+    .overview-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .card{
+
+        min-height:145px;
+
+    }
+
+    .card-label{
+
+        margin-bottom:32px;
+
+    }
+
+    .project-card{
+
+        grid-template-columns:1fr;
+
+        padding:30px 24px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div
+    class="auth-loading"
+    id="authLoading"
+>
+
+    <div class="loading-logo">
+        Velita
+    </div>
+
+    <div class="loading-text">
+        Verifying staff access
+    </div>
+
+</div>
+
+
+<div
+    class="background-v"
+    aria-hidden="true"
+>
+    V
+</div>
+
+
+<div class="app">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+
+        <div class="brand">
+
+            <div class="logo">
+                Velita
+            </div>
+
+            <div class="internal">
+                Internal Workspace
+            </div>
+
+        </div>
+
+
+        <nav class="nav">
+
+            <a
+                class="nav-item active"
+                href="./"
+            >
+
+                <span class="nav-icon">
+                    ◇
+                </span>
+
+                Overview
+
+            </a>
+
+
+            <a
+                class="nav-item"
+                href="#"
+            >
+
+                <span class="nav-icon">
+                    ◌
+                </span>
+
+                Project Nova
+
+            </a>
+
+
+            <a
+                class="nav-item"
+                href="#"
+            >
+
+                <span class="nav-icon">
+                    ◎
+                </span>
+
+                Beta Testers
+
+            </a>
+
+
+            <a
+                class="nav-item"
+                href="#"
+            >
+
+                <span class="nav-icon">
+                    ◇
+                </span>
+
+                Feedback
+
+            </a>
+
+
+            <a
+                class="nav-item"
+                href="#"
+            >
+
+                <span class="nav-icon">
+                    ◫
+                </span>
+
+                Releases
+
+            </a>
+
+
+            <a
+                class="nav-item"
+                href="#"
+            >
+
+                <span class="nav-icon">
+                    ⚙
+                </span>
+
+                Settings
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div
+                class="user-email"
+                id="userEmail"
+            >
+                Loading...
+            </div>
+
+            <button
+                class="sign-out"
+                id="signOutButton"
+            >
+                Sign out
+            </button>
+
+        </div>
+
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+
+        <div class="mobile-header">
+
+            <div class="mobile-logo">
+                Velita
+            </div>
+
+            <button
+                class="mobile-signout"
+                id="mobileSignOut"
+            >
+                Sign out
+            </button>
+
+        </div>
+
+
+        <header class="header">
+
+            <div>
+
+                <div class="header-label">
+                    Staff Dashboard
+                </div>
+
+                <h1>
+                    Welcome back.
+                </h1>
+
+            </div>
+
+
+            <div class="status">
+
+                <span class="status-dot"></span>
+
+                Internal
+
+            </div>
+
+        </header>
+
+
+        <!-- OVERVIEW -->
+
+        <section>
+
+            <div class="section-label">
+                Overview
+            </div>
+
+
+            <div class="overview-grid">
+
+
+                <article class="card">
+
+                    <div class="card-label">
+                        Current Project
+                    </div>
+
+                    <div class="card-value">
+                        Project Nova
+                    </div>
+
+                    <div class="card-sub">
+                        Active development
+                    </div>
+
+                </article>
+
+
+                <article class="card">
+
+                    <div class="card-label">
+                        Target Release
+                    </div>
+
+                    <div class="card-value">
+                        Q4 2026
+                    </div>
+
+                    <div class="card-sub">
+                        Planned release window
+                    </div>
+
+                </article>
+
+
+                <article class="card">
+
+                    <div class="card-label">
+                        Development Stage
+                    </div>
+
+                    <div class="card-value">
+                        Development
+                    </div>
+
+                    <div class="card-sub">
+                        Current stage
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- PROJECT -->
+
+        <section>
+
+            <div class="section-label">
+                Current Project
+            </div>
+
+
+            <div class="project-card">
+
+
+                <div class="project-content">
+
+                    <div class="project-eyebrow">
+                        Velita / Project 01
+                    </div>
+
+                    <h2 class="project-title">
+                        Project Nova
+                    </h2>
+
+                    <p class="project-text">
+
+                        Velita's first consumer mobile application
+                        is currently in active development.
+
+                        This internal workspace will gradually become
+                        the central place for project information,
+                        testing, feedback and releases.
+
+                    </p>
+
+                </div>
+
+
+                <div class="project-meta">
+
+
+                    <div class="meta">
+
+                        <span class="meta-label">
+                            Status
+                        </span>
+
+                        <span class="meta-value">
+                            In Development
+                        </span>
+
+                    </div>
+
+
+                    <div class="meta">
+
+                        <span class="meta-label">
+                            Platform
+                        </span>
+
+                        <span class="meta-value">
+                            Mobile
+                        </span>
+
+                    </div>
+
+
+                    <div class="meta">
+
+                        <span class="meta-label">
+                            Target
+                        </span>
+
+                        <span class="meta-value">
+                            Q4 2026
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+</div>
+
+
+<script type="module">
+
+
+/* ---------------------------------------
+   FIREBASE
+---------------------------------------- */
+
+
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
+
+import {
+
+    getAuth,
+    onAuthStateChanged,
+    signOut
+
+} from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
+const firebaseConfig = {
+
+    apiKey:
+    "AIzaSyA90LSnCB1a7THq7Ze_BVQElGwvD6R-dhY",
+
+    authDomain:
+    "velita-1d360.firebaseapp.com",
+
+    projectId:
+    "velita-1d360",
+
+    storageBucket:
+    "velita-1d360.firebasestorage.app",
+
+    messagingSenderId:
+    "827857841403",
+
+    appId:
+    "1:827857841403:web:bef04968f35edd0ad7d45e",
+
+    measurementId:
+    "G-XCLFF0P9GV"
+
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+
+const auth =
+    getAuth(app);
+
+
+/* ---------------------------------------
+   AUTH GUARD
+---------------------------------------- */
+
+
+const authLoading =
+    document.getElementById("authLoading");
+
+
+const userEmail =
+    document.getElementById("userEmail");
+
+
+onAuthStateChanged(
+
+    auth,
+
+    (user) => {
+
+
+        if(user){
+
+
+            userEmail.textContent =
+                user.email;
+
+
+            authLoading.style.display =
+                "none";
+
+
+        }else{
+
+
+            window.location.replace(
+                "../"
+            );
+
+
+        }
+
+
+    }
+
+);
+
+
+/* ---------------------------------------
+   SIGN OUT
+---------------------------------------- */
+
+
+const signOutButton =
+    document.getElementById("signOutButton");
+
+
+const mobileSignOut =
+    document.getElementById("mobileSignOut");
+
+
+async function handleSignOut(){
+
+
+    try{
+
+
+        await signOut(auth);
+
+
+        window.location.replace(
+            "../"
+        );
+
+
+    }catch(error){
+
+
+        console.error(
+            "Sign out failed:",
+            error
+        );
+
+
+    }
+
+
+}
+
+
+signOutButton.addEventListener(
+    "click",
+    handleSignOut
+);
+
+
+mobileSignOut.addEventListener(
+    "click",
+    handleSignOut
+);
+
+
+</script>
+
+
+</body>
+
+</html>
