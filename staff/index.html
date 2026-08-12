@@ -728,78 +728,192 @@
     </div>
 
 
-    <script>
+<script type="module">
 
-        /* ---------------------------------------
-           SHOW / HIDE PASSWORD
-        ---------------------------------------- */
+    /* ---------------------------------------
+       FIREBASE IMPORTS
+    ---------------------------------------- */
 
-        const passwordInput =
-            document.getElementById("password");
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
 
-        const togglePassword =
-            document.getElementById("togglePassword");
-
-        togglePassword.addEventListener("click", () => {
-
-            const showing =
-                passwordInput.type === "text";
-
-            passwordInput.type =
-                showing ? "password" : "text";
-
-            togglePassword.textContent =
-                showing ? "Show" : "Hide";
-
-        });
+    import {
+        getAuth,
+        signInWithEmailAndPassword,
+        sendPasswordResetEmail,
+        onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
 
-        /* ---------------------------------------
-           TEMPORARY LOGIN BEHAVIOUR
+    /* ---------------------------------------
+       FIREBASE CONFIG
+    ---------------------------------------- */
 
-           Firebase Authentication will replace
-           this section later.
+    const firebaseConfig = {
+        apiKey: "AIzaSyA90LSnCB1a7THq7Ze_BVQElGwvD6R-dhY",
+        authDomain: "velita-1d360.firebaseapp.com",
+        projectId: "velita-1d360",
+        storageBucket: "velita-1d360.firebasestorage.app",
+        messagingSenderId: "827857841403",
+        appId: "1:827857841403:web:bef04968f35edd0ad7d45e",
+        measurementId: "G-XCLFF0P9GV"
+    };
 
-           IMPORTANT:
-           There are NO passwords or authorised
-           emails stored in this file.
-        ---------------------------------------- */
 
-        const loginForm =
-            document.getElementById("staffLoginForm");
+    /* ---------------------------------------
+       INITIALISE FIREBASE
+    ---------------------------------------- */
 
-        const statusMessage =
-            document.getElementById("statusMessage");
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
-        loginForm.addEventListener("submit", (event) => {
 
-            event.preventDefault();
+    /* ---------------------------------------
+       ELEMENTS
+    ---------------------------------------- */
+
+    const passwordInput =
+        document.getElementById("password");
+
+    const togglePassword =
+        document.getElementById("togglePassword");
+
+    const loginForm =
+        document.getElementById("staffLoginForm");
+
+    const statusMessage =
+        document.getElementById("statusMessage");
+
+    const forgotPassword =
+        document.getElementById("forgotPassword");
+
+
+    /* ---------------------------------------
+       SHOW / HIDE PASSWORD
+    ---------------------------------------- */
+
+    togglePassword.addEventListener("click", () => {
+
+        const showing =
+            passwordInput.type === "text";
+
+        passwordInput.type =
+            showing ? "password" : "text";
+
+        togglePassword.textContent =
+            showing ? "Show" : "Hide";
+
+    });
+
+
+    /* ---------------------------------------
+       SIGN IN
+    ---------------------------------------- */
+
+    loginForm.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+        const email =
+            document.getElementById("email").value.trim();
+
+        const password =
+            document.getElementById("password").value;
+
+        statusMessage.textContent =
+            "Signing in...";
+
+        statusMessage.classList.add("visible");
+
+        try {
+
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
 
             statusMessage.textContent =
-                "Staff authentication has not been connected yet.";
+                "Sign in successful. Redirecting...";
+
+            setTimeout(() => {
+                window.location.href = "./dashboard/";
+            }, 500);
+
+        } catch (error) {
+
+            console.error(error);
+
+            statusMessage.textContent =
+                "Unable to sign in. Please check your email and password.";
+
+        }
+
+    });
+
+
+    /* ---------------------------------------
+       PASSWORD RESET
+    ---------------------------------------- */
+
+    forgotPassword.addEventListener("click", async () => {
+
+        const email =
+            document.getElementById("email").value.trim();
+
+        if (!email) {
+
+            statusMessage.textContent =
+                "Enter your work email first, then select Forgot password.";
 
             statusMessage.classList.add("visible");
 
-        });
+            return;
+        }
 
+        try {
 
-        /* ---------------------------------------
-           TEMPORARY PASSWORD RESET BEHAVIOUR
-        ---------------------------------------- */
-
-        const forgotPassword =
-            document.getElementById("forgotPassword");
-
-        forgotPassword.addEventListener("click", () => {
+            await sendPasswordResetEmail(
+                auth,
+                email
+            );
 
             statusMessage.textContent =
-                "Password recovery will become available when staff authentication is connected.";
+                "Password reset email sent. Check your inbox.";
 
             statusMessage.classList.add("visible");
 
-        });
+        } catch (error) {
 
-    </script>
+            console.error(error);
+
+            statusMessage.textContent =
+                "Unable to send a password reset email.";
+
+            statusMessage.classList.add("visible");
+
+        }
+
+    });
+
+
+    /* ---------------------------------------
+       ALREADY SIGNED IN?
+    ---------------------------------------- */
+
+    onAuthStateChanged(auth, (user) => {
+
+        if (user) {
+
+            console.log(
+                "Authenticated staff user:",
+                user.email
+            );
+
+        }
+
+    });
+
+</script>
 
 </body>
 </html>
