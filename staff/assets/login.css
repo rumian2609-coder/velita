@@ -1,0 +1,209 @@
+/* Staff presentation only. Authentication remains in the existing page module. */
+@font-face {
+    font-family: "Manrope";
+    src: url("../../assets/fonts/manrope-latin-variable.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 400 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Parisienne";
+    src: url("../../assets/fonts/parisienne-latin-400.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+:root {
+    color-scheme: light;
+    --brown: #4b3528;
+    --cream: #e9dfd3;
+    --muted: #705d4f;
+    --field: #f3ece4;
+    --field-border: #9c8471;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { min-height: 100%; background: var(--cream); }
+body {
+    margin: 0;
+    color: var(--brown);
+    background: var(--cream);
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+h1, p { margin: 0; }
+button, input { font: inherit; }
+a { color: inherit; text-decoration: none; }
+a, button { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+::selection { color: var(--cream); background: var(--brown); }
+
+.staff-shell {
+    display: grid;
+    grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
+    min-height: 100vh;
+    min-height: 100svh;
+}
+.access-side {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 36px clamp(32px, 5vw, 88px) 24px;
+}
+.access-wordmark {
+    width: fit-content;
+    font-family: "Parisienne", cursive;
+    font-size: 52px;
+    font-weight: 400;
+    line-height: 1.1;
+}
+.login-wrap {
+    align-self: center;
+    width: 100%;
+    max-width: 390px;
+    margin-block: auto;
+    padding-block: 24px;
+}
+.intro { margin-bottom: 38px; }
+h1 {
+    font-size: clamp(34px, 3.4vw, 48px);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -.055em;
+}
+.intro-text { margin-top: 14px; color: var(--muted); font-size: 14px; }
+.form-group { margin-bottom: 24px; }
+label { display: block; margin-bottom: 9px; font-size: 13px; font-weight: 500; }
+.input-wrap { position: relative; }
+input {
+    display: block;
+    width: 100%;
+    min-height: 56px;
+    padding: 14px 16px;
+    border: 1px solid var(--field-border);
+    border-radius: 5px;
+    background: var(--field);
+    color: var(--brown);
+    font-size: 16px;
+    line-height: 1.5;
+    transition: border-color 160ms ease, background-color 160ms ease;
+}
+input::placeholder { color: var(--muted); opacity: 1; }
+input:focus { border-color: var(--brown); background: #f8f2eb; }
+input:focus-visible { outline-color: var(--brown); outline-offset: 3px; }
+.password-input { padding-right: 78px; }
+.show-password {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    bottom: 0;
+    min-width: 64px;
+    min-height: 44px;
+    padding: 0 10px;
+    border: 0;
+    background: transparent;
+    color: var(--brown);
+    font-size: 12px;
+    font-weight: 500;
+}
+.show-password:focus-visible { outline-offset: -5px; }
+.form-options { display: flex; justify-content: flex-end; margin-top: -12px; margin-bottom: 20px; }
+.forgot-password {
+    min-height: 44px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font-size: 12px;
+    text-underline-offset: 4px;
+}
+.forgot-password:hover { color: var(--brown); text-decoration: underline; }
+.sign-in-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 56px;
+    padding: 14px 24px;
+    border: 1px solid var(--brown);
+    border-radius: 5px;
+    background: var(--brown);
+    color: var(--cream);
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 160ms ease;
+}
+.sign-in-button:hover { background: #35231a; }
+.sign-in-button:focus-visible { outline-color: var(--brown); }
+.status-message {
+    display: none;
+    margin-top: 22px;
+    color: var(--brown);
+    font-size: 13px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+.status-message.visible { display: block; }
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 30px;
+    color: var(--muted);
+    font-size: 12px;
+    text-underline-offset: 4px;
+}
+.back-link:hover { color: var(--brown); text-decoration: underline; }
+.access-footer { color: var(--muted); }
+.access-footer small { font-size: 11px; }
+
+.signature-side { position: relative; min-width: 0; overflow: hidden; background: var(--brown); }
+.signature-side picture, .signature-side img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+.signature-side img { object-fit: cover; object-position: 72% center; }
+
+@media (max-width: 1040px) and (min-width: 861px) {
+    .access-side { padding-inline: 36px; }
+    .intro-text { font-size: 13px; }
+    .signature-side img { object-position: 69% center; }
+}
+
+@media (min-width: 861px) and (max-height: 820px) {
+    .access-side { padding-block: 24px 20px; }
+    .access-wordmark { font-size: 46px; }
+    .login-wrap { padding-block: 24px; }
+    .intro { margin-bottom: 24px; }
+    .form-group { margin-bottom: 18px; }
+    input, .sign-in-button { min-height: 52px; }
+    .form-options { margin-bottom: 16px; }
+    .back-link { margin-top: 18px; }
+}
+
+@media (max-width: 860px) {
+    .staff-shell { grid-template-columns: minmax(0, 1fr); }
+    .signature-side { grid-row: 1; height: 225px; }
+    .signature-side img { object-position: center 70%; }
+    .access-side { position: static; grid-row: 2; padding: 42px 28px 24px; }
+    .access-wordmark { position: absolute; top: 25px; left: 28px; z-index: 1; color: var(--cream); font-size: 42px; }
+    .login-wrap { max-width: 390px; margin-block: 0; padding-block: 0; }
+    h1 { font-size: 38px; }
+    .intro { margin-bottom: 30px; }
+    .back-link { margin-top: 25px; }
+    .access-footer { width: 100%; max-width: 390px; margin: 28px auto 0; }
+}
+
+@media (max-width: 380px) {
+    .signature-side { height: 190px; }
+    .access-side { padding: 34px 22px 22px; }
+    .access-wordmark { left: 22px; }
+    h1 { font-size: 35px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+}
